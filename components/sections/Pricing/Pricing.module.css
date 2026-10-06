@@ -1,4 +1,4 @@
-.stage{position:relative;background:#050706}
+.stage{position:relative;z-index:3;background:#050706}
 .section{position:relative;z-index:3;min-height:100svh;margin-top:-1px;background:#050706;color:#f4f4f2;box-shadow:0 -26px 70px rgba(0,0,0,.38);isolation:isolate}
 .section::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,9,12,.62),rgba(3,9,12,.74)),url("https://www.figma.com/api/mcp/asset/df0565cc-9506-40b1-bbc8-a2cccafd0cd6.png") center/cover no-repeat;z-index:-1}
 .inner{min-height:1080px;padding:93px 3.33vw;display:grid;grid-template-columns:581px minmax(0,1176px);gap:80px;align-items:start}
