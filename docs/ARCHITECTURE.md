@@ -1,14 +1,14 @@
 # Autodetailing Landing — implementation architecture
 
-This file is the engineering source of truth for section composition. Visual values are finalized after the Configurator review; reusable values live in `styles/tokens.css`.
+This file is the engineering source of truth for section composition. Visual rules are documented in `docs/DESIGN_SYSTEM.md`; reusable machine values live in `styles/tokens.css`. Figma remains the upstream design source.
 
 ## Reference order
 
 When implementing a section, use sources in this order:
 
-1. Existing project architecture and shared components.
+1. `docs/DESIGN_SYSTEM.md` and shared code tokens/components.
 2. Approved Figma frame for the section.
-3. Existing approved sections (Hero, Services) for typography, spacing, backgrounds and motion.
+3. Existing approved sections for implementation patterns.
 4. Local section CSS only for geometry unique to that section.
 
 Do not invent a new layout system inside a section.
@@ -45,7 +45,7 @@ Adjacent sections should feel like one continuous dark studio environment. Do no
 - Gotham Pro (`--font-display`) — display/headings.
 - Golos Text (`--font-body`) — body, UI, kickers.
 - Reuse approved heading/kicker/body roles before adding local font sizes.
-- Final reusable type scale will be promoted to `tokens.css` after Configurator visual approval.
+- Approved reusable type roles are defined in `docs/DESIGN_SYSTEM.md` and `styles/tokens.css`.
 
 ## Media / product demo
 
