@@ -1187,3 +1187,51 @@ drop-shadow(0 22px 22px rgba(0,0,0,.58));
 @media(max-width:767px) and (max-height:760px){
 .mobileVehicleStage{width:min(82vw,390px);bottom:4px}
 }
+
+/* Mobile Hero final composition pass: clear fixed nav, tighten CTA-to-car gap, ground the car. */
+@media(max-width:767px){
+.copy{
+margin-top:104px;
+}
+.mobileVehicleStage{
+left:50%;
+bottom:92px;
+width:min(108vw,500px);
+transform:translateX(-50%);
+}
+.mobileVehicleStage::before{
+left:15%;
+right:15%;
+bottom:1%;
+height:5.5%;
+background:radial-gradient(ellipse at center,rgba(0,0,0,.88) 0%,rgba(0,0,0,.58) 38%,rgba(0,0,0,.18) 62%,transparent 78%);
+filter:blur(7px);
+transform:scaleX(1.02);
+}
+.mobileVehicleStage::after{
+left:23%;
+right:23%;
+bottom:0;
+height:9%;
+background:rgba(0,0,0,.2);
+filter:blur(15px);
+}
+.mobileVehicle{
+filter:
+sepia(.12)
+saturate(.9)
+hue-rotate(354deg)
+brightness(.82)
+contrast(1.12)
+drop-shadow(0 8px 6px rgba(0,0,0,.42))
+drop-shadow(0 15px 14px rgba(0,0,0,.34));
+}
+}
+@media(max-width:390px){
+.copy{margin-top:100px}
+.mobileVehicleStage{width:106vw;bottom:86px}
+}
+@media(max-width:767px) and (max-height:760px){
+.copy{margin-top:86px}
+.mobileVehicleStage{width:98vw;bottom:60px}
+}
