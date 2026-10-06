@@ -934,9 +934,9 @@
 
   .vehicleStage {
     top: auto;
-    right: 8px;
-    bottom: 94px;
-    width: min(108vw, 455px);
+    right: -72px;
+    bottom: 86px;
+    width: min(168vw, 655px);
     opacity: 1;
   }
 
@@ -986,6 +986,6 @@
   .actions { margin-top: 16px; gap: 8px; }
   .primaryCta { height: 48px; min-height: 48px; }
   .videoPlay { width: 36px; height: 36px; }
-  .vehicleStage { right: 6px; bottom: 82px; width: min(104vw, 430px); }
+  .vehicleStage { right: -62px; bottom: 76px; width: min(154vw, 600px); }
   .contactBar { height: 68px; }
 }
