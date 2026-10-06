@@ -40,6 +40,20 @@
     position: relative;
     z-index: 1;
   }
+
+  /* Hold the final StudioScene state before the next sheet covers it.
+     220vh = ~120vh viewing pause + ~100vh Pricing cover travel. */
+  .content::after {
+    content: "";
+    display: block;
+    height: 220vh;
+    pointer-events: none;
+  }
+
+  .content :global(#portfolio) {
+    position: sticky;
+    top: 0;
+  }
 }
 
 @media (min-width: 1280px) and (prefers-reduced-motion: no-preference) {
