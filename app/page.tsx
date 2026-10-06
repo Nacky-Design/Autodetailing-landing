@@ -6,6 +6,7 @@ import { Portfolio } from "@/components/sections/Portfolio/Portfolio";
 import { ScrollScene } from "@/components/scroll/ScrollScene";
 import { Pricing } from "@/components/sections/Pricing/Pricing";
 import { Faq } from "@/components/sections/Faq/Faq";
+import { Reviews } from "@/components/sections/Reviews/Reviews";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       </ScrollScene>
       <Pricing />
       <Faq />
+      <Reviews />
     </main>
   );
 }
