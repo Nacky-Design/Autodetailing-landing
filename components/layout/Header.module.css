@@ -325,3 +325,7 @@
 .headerScrolled .descriptor{font-size:10px}
 .headerScrolled .actions a,.headerScrolled .actions button{min-height:48px}
 }
+
+/* Keep global navigation above transformed/sticky scene layers. */
+.header{z-index:2147483000;isolation:isolate}
+.mobilePanel{z-index:2147483001}
