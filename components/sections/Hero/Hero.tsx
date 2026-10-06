@@ -61,9 +61,9 @@ export function Hero() {
           </h1>
 
           <p className={styles.description}>
-            Премиальные пленки. Профессиональная оклейка.
-            <br />
-            Индивидуальный стиль.
+            <span>Премиальные пленки.</span>
+            <span>Профессиональная оклейка.</span>
+            <span>Индивидуальный стиль.</span>
           </p>
 
           <div className={styles.actions}>
