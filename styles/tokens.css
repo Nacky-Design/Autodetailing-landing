@@ -36,7 +36,7 @@
   --tracking-hero: -0.02em;
 
   /* Section H2 — approved Full HD baseline */
-  --fs-h2: 4.5rem; /* 72px at 1920 */
+  --fs-h2: 72px; /* approved Full HD value */
   --lh-h2: 1.26;
   --tracking-h2: -1px;
 
