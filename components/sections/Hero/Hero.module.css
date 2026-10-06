@@ -1063,3 +1063,19 @@
 @media(max-width:767px) and (max-height:760px){
 .vehicleStage{bottom:12px}
 }
+
+/* Final mobile Hero geometry after Header was moved out of Hero.
+   The copy needs a real top offset because .content is top-aligned. */
+@media(max-width:767px){
+.content{
+padding:0 20px;
+}
+.copy{
+margin-top:148px;
+}
+}
+@media(max-width:767px) and (max-height:760px){
+.copy{
+margin-top:122px;
+}
+}
