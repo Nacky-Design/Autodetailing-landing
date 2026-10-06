@@ -4,6 +4,7 @@ import { Configurator } from "@/components/sections/Configurator/Configurator";
 import { About } from "@/components/sections/About/About";
 import { Portfolio } from "@/components/sections/Portfolio/Portfolio";
 import { ScrollScene } from "@/components/scroll/ScrollScene";
+import { Pricing } from "@/components/sections/Pricing/Pricing";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <About />
         <Portfolio />
       </ScrollScene>
+      <Pricing />
     </main>
   );
 }
