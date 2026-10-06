@@ -21,15 +21,10 @@ export function Hero() {
         <div className={styles.leftVeil} />
 
         <div className={styles.mobileVehicleStage}>
-          <Image
+          <img
             className={styles.mobileVehicle}
             src="https://www.figma.com/api/mcp/asset/0c7c97d7-1b97-4b7f-a551-2b07fcd5294b.png"
             alt="Премиальный автомобиль, вид спереди"
-            width={1246}
-            height={1262}
-            priority
-            quality={90}
-            sizes="100vw"
           />
         </div>
 
