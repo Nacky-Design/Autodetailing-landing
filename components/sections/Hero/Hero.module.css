@@ -1103,3 +1103,37 @@ filter:drop-shadow(0 20px 22px rgba(0,0,0,.48));
 @media(max-width:767px) and (max-height:760px){
 .mobileVehicleStage{bottom:-54px;width:min(102vw,470px)}
 }
+
+/* Mobile front-view car: warm studio integration + grounded CSS shadow. */
+@media(max-width:767px){
+.mobileVehicleStage{
+bottom:-34px;
+width:min(116vw,540px);
+}
+.mobileVehicleStage::before{
+content:"";
+position:absolute;
+z-index:-1;
+left:12%;
+right:12%;
+bottom:4%;
+height:12%;
+border-radius:50%;
+background:radial-gradient(ellipse at center,rgba(0,0,0,.78) 0%,rgba(0,0,0,.5) 42%,rgba(0,0,0,0) 76%);
+filter:blur(14px);
+transform:scaleX(1.08);
+}
+.mobileVehicle{
+filter:
+sepia(.12)
+saturate(.92)
+hue-rotate(350deg)
+brightness(.9)
+contrast(1.08)
+drop-shadow(0 16px 12px rgba(0,0,0,.34))
+drop-shadow(0 30px 28px rgba(0,0,0,.42));
+}
+}
+@media(max-width:767px) and (max-height:760px){
+.mobileVehicleStage{bottom:-58px;width:min(106vw,485px)}
+}
