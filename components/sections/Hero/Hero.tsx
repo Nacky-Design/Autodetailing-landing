@@ -96,19 +96,6 @@ export function Hero() {
               Примерить на своём авто
             </Button>
 
-            <button
-              type="button"
-              className={styles.videoAction}
-              aria-label="Смотреть видео о студии и процессе (скоро)"
-            >
-              <span className={styles.videoPlay} aria-hidden="true">
-                <Image src="/icons/play.svg" alt="" width={29} height={29} />
-              </span>
-              <span className={styles.videoCopy}>
-                <span className={styles.videoTitle}>Смотреть видео</span>
-                <span className={styles.videoHint}>О студии и процессе</span>
-              </span>
-            </button>
           </div>
         </div>
       </div>
