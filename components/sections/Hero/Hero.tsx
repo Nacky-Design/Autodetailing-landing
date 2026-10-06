@@ -23,7 +23,7 @@ export function Hero() {
         <div className={styles.mobileVehicleStage}>
           <Image
             className={styles.mobileVehicle}
-            src="/images/hero/vehicle-front-mobile.png"
+            src="https://www.figma.com/api/mcp/asset/0c7c97d7-1b97-4b7f-a551-2b07fcd5294b.png"
             alt="Премиальный автомобиль, вид спереди"
             width={1246}
             height={1262}
