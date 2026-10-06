@@ -23,18 +23,18 @@
 .tone {
   position: absolute;
   inset: 0;
-  background: rgba(2, 8, 11, 0.58);
+  background: rgba(2, 8, 11, 0.28);
 }
 
 .copyVeil {
   position: absolute;
   inset: 0 auto 0 0;
-  width: min(48%, 920px);
+  width: 690px;
   background: linear-gradient(
     90deg,
-    rgba(1, 5, 7, 0.82) 0%,
-    rgba(1, 5, 7, 0.68) 58%,
-    rgba(1, 5, 7, 0) 100%
+    rgba(3, 16, 20, 0.98) 0%,
+    rgba(3, 16, 20, 0.93) 78%,
+    rgba(3, 16, 20, 0.09) 100%
   );
 }
 
@@ -46,8 +46,8 @@
 
 .copy {
   position: absolute;
-  top: 171px;
-  left: var(--container-pad);
+  top: 176px;
+  left: 71px;
   width: min(37vw, 709px);
 }
 
@@ -79,11 +79,11 @@
 .title {
   display: flex;
   flex-direction: column;
-  margin-top: 45px;
+  margin-top: 48px;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--fs-h2);
-  line-height: var(--lh-h2);
+  line-height: 76px;
   letter-spacing: var(--tracking-h2);
 }
 
@@ -92,25 +92,25 @@
 }
 
 .description {
-  margin-top: 26px;
+  margin-top: 30px;
   width: 608px;
   max-width: 100%;
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 22px;
-  line-height: 1.36;
+  font-size: 24px;
+  line-height: 34px;
   color: var(--color-text-secondary);
 }
 
 .cta {
   width: 478px;
   min-height: 86px;
-  margin-top: 44px;
+  margin-top: 48px;
 }
 
 .playerWrap {
   position: absolute;
-  top: 245px;
+  top: 192px;
   left: 821px;
   width: min(1035px, calc(100% - 885px));
 }
@@ -121,9 +121,10 @@
   width: 100%;
   aspect-ratio: 1035 / 642;
   overflow: hidden;
-  border: 1px solid rgba(231, 193, 127, 0.42);
-  background: #080b0d;
-  box-shadow: var(--shadow-card);
+  border: 2px solid #77736b;
+  background: #071014;
+  border-radius: 24px;
+  box-shadow: 0 18px 21px rgba(0, 0, 0, 0.44);
 }
 
 .preview {
@@ -269,7 +270,7 @@
   }
 
   .playerWrap {
-    top: clamp(164px, 12.76vw, 245px);
+    top: clamp(128px, 10vw, 192px);
     left: clamp(548px, 42.76vw, 821px);
     width: clamp(690px, 53.906vw, 1035px);
   }
