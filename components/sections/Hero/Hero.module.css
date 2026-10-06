@@ -928,15 +928,15 @@
   }
 
   .videoPlay img { width: 18px; height: 18px; }
-  .videoCopy { gap: 1px; }
+  .videoCopy { gap: 0; }
   .videoTitle { font-size: 15px; }
-  .videoHint { font-size: 11px; }
+  .videoHint { display: none; }
 
   .vehicleStage {
     top: auto;
-    right: -18px;
-    bottom: 84px;
-    width: min(116vw, 490px);
+    right: 8px;
+    bottom: 94px;
+    width: min(108vw, 455px);
     opacity: 1;
   }
 
@@ -986,6 +986,6 @@
   .actions { margin-top: 16px; gap: 8px; }
   .primaryCta { height: 48px; min-height: 48px; }
   .videoPlay { width: 36px; height: 36px; }
-  .vehicleStage { bottom: 72px; width: 108vw; }
+  .vehicleStage { right: 6px; bottom: 82px; width: min(104vw, 430px); }
   .contactBar { height: 68px; }
 }
