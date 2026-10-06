@@ -357,6 +357,7 @@
 
   .copy {
     max-width: 42rem;
+    min-width: 0;
   }
 
   .title {
@@ -365,6 +366,7 @@
 
   .playerWrap {
     max-width: none;
+    min-width: 0;
   }
 }
 
@@ -372,6 +374,7 @@
   .inner {
     gap: 2.25rem;
     padding-block: 3.5rem;
+    padding-inline: var(--container-pad);
   }
 
   .copyVeil {
@@ -382,10 +385,13 @@
   .kickerRow {
     gap: 1rem;
     height: auto;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .kicker {
     font-size: 0.8125rem;
+    white-space: nowrap;
   }
 
   .kickerLine {
@@ -395,14 +401,18 @@
 
   .title {
     margin-top: 1.75rem;
-    font-size: clamp(38px, 10vw, 52px);
+    max-width: 100%;
+    font-size: clamp(34px, 9vw, 44px);
     line-height: 1.08;
+    overflow-wrap: anywhere;
   }
 
   .description {
     margin-top: 1.25rem;
+    width: 100%;
     font-size: 1rem;
     line-height: 1.45;
+    overflow-wrap: anywhere;
   }
 
   .description br {
@@ -410,8 +420,12 @@
   }
 
   .cta {
+    width: 100%;
+    min-width: 0;
     min-height: 64px;
     margin-top: 2rem;
+    padding-inline: 1rem;
+    font-size: 1rem;
   }
 
   .playBackdrop {
@@ -431,11 +445,12 @@
   }
 
   .controls {
-    grid-template-columns: 20px auto minmax(0, 1fr) 20px 20px;
+    grid-template-columns: 20px auto minmax(48px, 1fr) 20px 20px;
     gap: 10px;
     height: 56px;
     padding-inline: 12px;
     font-size: 12px;
+    overflow: hidden;
   }
 }
 
@@ -459,7 +474,21 @@
   }
 
   .title {
-    font-size: clamp(34px, 10.5vw, 44px);
+    font-size: clamp(32px, 8.7vw, 38px);
+  }
+
+  .player {
+    border-radius: 16px;
+  }
+
+  .playBackdrop {
+    width: 64px;
+    height: 64px;
+  }
+
+  .playControl {
+    width: 48px;
+    height: 48px;
   }
 
   .cta {
