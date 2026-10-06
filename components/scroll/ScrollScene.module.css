@@ -51,3 +51,25 @@
   50% { filter: brightness(1); }
   100% { filter: brightness(0.94); }
 }
+
+
+@media (min-width: 1280px) and (prefers-reduced-motion: no-preference) {
+  .content :global(section) > * {
+    transition: opacity 760ms var(--ease-out), transform 900ms var(--ease-out);
+  }
+
+  .content :global(section:not([data-scene-visible="true"])) > * {
+    opacity: 0;
+    transform: translateY(42px);
+  }
+
+  .content :global(section[data-scene-visible="true"]) > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .content :global(#top) > * {
+    opacity: 1;
+    transform: none;
+  }
+}
