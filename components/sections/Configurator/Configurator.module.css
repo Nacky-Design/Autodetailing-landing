@@ -1,0 +1,86 @@
+.section {
+  min-height: 100svh;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 42.7%) minmax(0, 57.3%);
+  align-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 75% 45%, rgba(86, 73, 54, .16), transparent 34%),
+    linear-gradient(90deg, #050708 0 36%, #090b0c 57%, #050708 100%);
+  color: var(--color-text);
+}
+.section::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 36%;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(0,0,0,.62), rgba(0,0,0,.08));
+}
+.copy {
+  position: relative;
+  z-index: 2;
+  padding-left: var(--container-pad);
+  padding-right: clamp(2rem, 4vw, 7rem);
+}
+.kickerRow { display:flex; align-items:center; gap:2.2rem; margin-bottom:2.75rem; }
+.kicker {
+  flex:none; font: 500 clamp(.8rem,1vw,1.25rem)/1 var(--font-body);
+  letter-spacing:.2em; text-transform:uppercase; color:var(--color-accent-bright);
+}
+.kickerLine { width:min(11.75rem,10vw); height:1px; background:var(--color-accent-bright); opacity:.62; }
+.title {
+  display:flex; flex-direction:column; font-family:var(--font-display); font-weight:700;
+  font-size:clamp(3rem,4vw,4.75rem); line-height:1; letter-spacing:-.025em;
+}
+.accent { color:var(--color-accent-bright); }
+.description {
+  max-width:38rem; margin-top:1.65rem; font:400 clamp(1.05rem,1.35vw,1.55rem)/1.38 var(--font-body);
+  color:var(--color-text-secondary);
+}
+.cta { margin-top:3rem; min-width:min(29.875rem,100%); }
+.playerWrap { position:relative; z-index:2; width:calc(100% - 3.3vw); max-width:1035px; justify-self:start; }
+.player {
+  position:relative; display:block; aspect-ratio:1035/642; overflow:hidden; border:1px solid rgba(231,193,127,.45);
+  background:#0a0c0d; box-shadow:0 28px 80px rgba(0,0,0,.45);
+}
+.preview { position:absolute; inset:-10%; width:120%; height:120%; border:0; pointer-events:none; }
+.scrim { position:absolute; inset:0; background:rgba(0,0,0,.18); transition:background var(--dur-med) var(--ease-out); }
+.play {
+  position:absolute; left:50%; top:50%; width:110px; height:110px; translate:-50% -50%; border-radius:50%;
+  display:grid; place-items:center; background:rgba(7,9,10,.72); border:1px solid rgba(255,215,149,.3);
+  backdrop-filter:blur(6px); transition:transform var(--dur-med) var(--ease-out), border-color var(--dur-med) var(--ease-out);
+}
+.play span { width:82px; height:82px; border-radius:50%; background:var(--color-accent-fill); position:relative; }
+.play span::after { content:""; position:absolute; left:34px; top:27px; border-left:22px solid #090b0d; border-top:14px solid transparent; border-bottom:14px solid transparent; }
+.controls { height:81px; display:flex; align-items:center; gap:1.5rem; padding:0 2rem; color:#ddd; font-family:var(--font-body); }
+.miniPlay { color:var(--color-accent-bright); }
+.time { flex:none; }
+.track { position:relative; flex:1; height:1px; background:rgba(255,255,255,.25); }
+.track i { position:absolute; inset:0 auto 0 0; width:20%; background:var(--color-accent-bright); }
+@media (hover:hover) and (pointer:fine) {
+  .player:hover .scrim { background:rgba(0,0,0,.08); }
+  .player:hover .play { transform:scale(1.06); border-color:rgba(255,215,149,.72); }
+}
+@media (max-width:1023px) {
+  .section { grid-template-columns:1fr; min-height:auto; padding:clamp(4rem,10vw,7rem) var(--container-pad); gap:3rem; }
+  .section::after { width:100%; }
+  .copy { padding:0; }
+  .playerWrap { width:100%; max-width:none; }
+  .title { font-size:clamp(2.6rem,7vw,4.5rem); }
+}
+@media (max-width:767px) {
+  .section { gap:2.25rem; padding-block:3.5rem; }
+  .kickerRow { gap:1rem; margin-bottom:1.75rem; }
+  .kickerLine { flex:1; }
+  .title { font-size:clamp(2.3rem,11vw,3.25rem); }
+  .description { font-size:1rem; }
+  .cta { margin-top:2rem; min-width:100%; }
+  .playerWrap { display:flex; flex-direction:column; }
+  .play { width:74px; height:74px; }
+  .play span { width:54px; height:54px; }
+  .play span::after { left:23px; top:17px; border-left-width:16px; border-top-width:10px; border-bottom-width:10px; }
+  .controls { height:56px; padding:0 .75rem; gap:.65rem; font-size:.75rem; }
+}
+@media (prefers-reduced-motion:reduce) { .scrim,.play { transition:none; } }
