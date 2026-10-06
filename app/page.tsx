@@ -7,6 +7,7 @@ import { ScrollScene } from "@/components/scroll/ScrollScene";
 import { Pricing } from "@/components/sections/Pricing/Pricing";
 import { Faq } from "@/components/sections/Faq/Faq";
 import { Reviews } from "@/components/sections/Reviews/Reviews";
+import { ContactFooter } from "@/components/sections/ContactFooter/ContactFooter";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <Pricing />
       <Faq />
       <Reviews />
+      <ContactFooter />
     </main>
   );
 }
