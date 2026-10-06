@@ -1079,3 +1079,27 @@ margin-top:148px;
 margin-top:122px;
 }
 }
+
+.mobileVehicleStage{display:none}
+@media(max-width:767px){
+.vehicleStage{display:none}
+.mobileVehicleStage{
+display:block;
+position:absolute;
+z-index:2;
+left:50%;
+bottom:-24px;
+width:min(112vw,520px);
+transform:translateX(-50%);
+pointer-events:none;
+}
+.mobileVehicle{
+display:block;
+width:100%;
+height:auto;
+filter:drop-shadow(0 20px 22px rgba(0,0,0,.48));
+}
+}
+@media(max-width:767px) and (max-height:760px){
+.mobileVehicleStage{bottom:-54px;width:min(102vw,470px)}
+}
