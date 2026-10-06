@@ -3,4 +3,36 @@
   isolation: isolate;
   display: flex;
   flex-direction: column;
+  background: #050a0c;
+}
+
+.studioBackdrop {
+  display: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 1280px) {
+  .studioBackdrop {
+    position: absolute;
+    inset: 100vh 0 0;
+    z-index: 0;
+    display: block;
+    overflow: clip;
+    pointer-events: none;
+  }
+
+  .studioImage {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .studioTone {
+    position: absolute;
+    inset: 0;
+    background: rgba(2, 8, 11, 0.28);
+  }
 }
