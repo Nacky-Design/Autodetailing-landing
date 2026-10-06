@@ -386,3 +386,13 @@ max-height:none;
 @media(max-width:1023px){
 .mobilePanelScrolled{top:62px;bottom:0;height:calc(100dvh - 62px);max-height:none}
 }
+
+@media(max-width:1023px){
+.mobilePhone{
+background:#e7c17f;
+border-color:#e7c17f;
+}
+.mobilePhone img{
+filter:brightness(0) saturate(100%);
+}
+}
