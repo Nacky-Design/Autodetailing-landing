@@ -15,6 +15,8 @@ export function Portfolio() {
   const [filter, setFilter] = useState("Все работы");
   const [offset, setOffset] = useState(0);
   const touchStartX = useRef<number | null>(null);
+  const touchCurrentX = useRef<number | null>(null);
+  const [dragX, setDragX] = useState(0);
   const filtered = useMemo(() => filter === "Все работы" ? works : works.filter((work) => work.filter === filter), [filter]);
   const looped = useMemo(() => filtered.length ? Array.from({ length: Math.max(8, filtered.length * 3) }, (_, i) => filtered[(i + offset) % filtered.length]) : [], [filtered, offset]);
 
@@ -25,6 +27,15 @@ export function Portfolio() {
 
   const onTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
     touchStartX.current = event.touches[0]?.clientX ?? null;
+    touchCurrentX.current = touchStartX.current;
+    setDragX(0);
+  };
+
+  const onTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartX.current === null) return;
+    const x = event.touches[0]?.clientX ?? touchStartX.current;
+    touchCurrentX.current = x;
+    setDragX(x - touchStartX.current);
   };
 
   const onTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
@@ -32,6 +43,8 @@ export function Portfolio() {
     const endX = event.changedTouches[0]?.clientX ?? touchStartX.current;
     const delta = endX - touchStartX.current;
     touchStartX.current = null;
+    touchCurrentX.current = null;
+    setDragX(0);
     if (Math.abs(delta) < 42) return;
     move(delta < 0 ? 1 : -1);
   };
@@ -49,8 +62,8 @@ export function Portfolio() {
         </div>
       </div>
 
-      <div className={styles.carousel} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-        <div className={styles.track}>
+      <div className={styles.carousel} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+        <div className={styles.track} style={{ "--drag-x": `${dragX}px` } as React.CSSProperties}>
           {looped.map((work, index) => (
             <article className={styles.card} key={`${work.title}-${index}`}>
               <img className={styles.photo} src={work.image} alt="" />
@@ -64,7 +77,17 @@ export function Portfolio() {
         <button className={`${styles.nav} ${styles.prev}`} type="button" onClick={() => move(-1)} aria-label="Предыдущая работа">←</button>
         <button className={`${styles.nav} ${styles.next}`} type="button" onClick={() => move(1)} aria-label="Следующая работа">→</button>
       </div>
-      <div className={styles.pagination} aria-hidden="true"><i /><i /><i /></div>
+      <div className={styles.pagination} aria-label="Навигация по портфолио">
+        {Array.from({ length: Math.min(3, Math.max(filtered.length, 1)) }, (_, index) => (
+          <button
+            key={index}
+            type="button"
+            className={index === offset % Math.min(3, Math.max(filtered.length, 1)) ? styles.activeDot : ""}
+            onClick={() => setOffset(index % Math.max(filtered.length, 1))}
+            aria-label={`Перейти к работе ${index + 1}`}
+          />
+        ))}
+      </div>
     </section>
   );
 }
