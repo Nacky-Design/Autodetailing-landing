@@ -380,3 +380,9 @@ height:calc(100dvh - 62px);
 max-height:none;
 }
 }
+
+/* Global header lives outside ScrollScene; mobile menu is portaled to body. */
+.mobilePanel{z-index:2147483647}
+@media(max-width:1023px){
+.mobilePanelScrolled{top:62px;bottom:0;height:calc(100dvh - 62px);max-height:none}
+}
