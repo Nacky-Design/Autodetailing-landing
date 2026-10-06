@@ -41,22 +41,6 @@
     z-index: 1;
   }
 
-  /* Portfolio is the final studio state: one viewport to look at it,
-     then one viewport for Pricing to cover it from below. */
-  .content::after {
-    content: "";
-    display: block;
-    height: 200vh;
-    pointer-events: none;
-  }
-
-  .content :global(#portfolio) {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    min-height: 100vh;
-    overflow: hidden;
-  }
 }
 
 @media (min-width: 1280px) and (prefers-reduced-motion: no-preference) {
