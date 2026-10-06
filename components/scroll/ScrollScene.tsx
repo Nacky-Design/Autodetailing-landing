@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import type { ReactNode } from "react";
+import { Children, type ReactNode, useEffect, useRef } from "react";
 import styles from "./ScrollScene.module.css";
 
 type ScrollSceneProps = {
@@ -22,8 +24,24 @@ export function ScrollScene({
   children,
   className = "",
 }: ScrollSceneProps) {
+  const sceneRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const root = sceneRef.current;
+    if (!root) return;
+    const sections = Array.from(root.querySelectorAll<HTMLElement>("section"));
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) entry.target.setAttribute("data-scene-visible", "true");
+      }
+    }, { threshold: 0.18 });
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
+      ref={sceneRef}
       id={id}
       className={`${styles.scene} ${className}`.trim()}
       data-scroll-scene={id}
