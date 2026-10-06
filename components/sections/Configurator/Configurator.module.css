@@ -549,47 +549,44 @@
 }
 
 
-/* Desktop scene transition: Configurator replaces Services without moving the shared studio. */
+
+
+/* Desktop scene transition.
+   The section is the scroll subject; absolutely positioned children cannot
+   reliably drive their own view timelines. */
 @media (min-width: 1280px) and (prefers-reduced-motion: no-preference) {
+  .section {
+    view-timeline-name: --configurator-scene;
+    view-timeline-axis: block;
+  }
+
   .copy {
     animation: studio-config-copy linear both;
-    animation-timeline: view();
-    animation-range: entry 4% entry 31%;
+    animation-timeline: --configurator-scene;
+    animation-range: entry 8% entry 34%;
   }
 
   .playerWrap {
     animation: studio-config-player linear both;
-    animation-timeline: view();
-    animation-range: entry 8% entry 38%;
+    animation-timeline: --configurator-scene;
+    animation-range: entry 12% entry 42%;
   }
 
   .localVeil {
     animation: studio-config-veil linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 30%;
+    animation-timeline: --configurator-scene;
+    animation-range: entry 0% entry 32%;
   }
 }
 
 @keyframes studio-config-copy {
-  from {
-    opacity: 0;
-    transform: translateY(38px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(56px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes studio-config-player {
-  from {
-    opacity: 0;
-    transform: translateY(52px) scale(0.985);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+  from { opacity: 0; transform: translateY(72px) scale(.975); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @keyframes studio-config-veil {
