@@ -3,4 +3,63 @@
   isolation: isolate;
   display: flex;
   flex-direction: column;
+  background: #050a0c;
+}
+
+.studioBackdrop {
+  display: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 1280px) {
+  .studioBackdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    display: block;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .studioImage {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .studioTone {
+    position: absolute;
+    inset: 0;
+    background: rgba(2, 8, 11, 0.28);
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+  }
+
+}
+
+@media (min-width: 1280px) and (prefers-reduced-motion: no-preference) {
+  .content :global(section) > * {
+    transition: opacity 760ms var(--ease-out), transform 900ms var(--ease-out);
+  }
+
+  .content :global(section:not([data-scene-visible="true"])) > * {
+    opacity: 0;
+    transform: translateY(42px);
+  }
+
+  .content :global(section[data-scene-visible="true"]) > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .content :global(#top) > * {
+    opacity: 1;
+    transform: none;
+  }
 }

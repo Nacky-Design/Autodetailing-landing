@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Header } from "@/components/layout/Header";
 import { Button } from "@/components/ui/Button";
 import { CARKVIZ_URL, SITE } from "@/lib/constants";
 import { CONTACT } from "@/lib/data/contacts";
@@ -20,6 +19,14 @@ export function Hero() {
         />
         <div className={styles.tone} />
         <div className={styles.leftVeil} />
+
+        <div className={styles.mobileVehicleStage}>
+          <img
+            className={styles.mobileVehicle}
+            src="https://www.figma.com/api/mcp/asset/0c7c97d7-1b97-4b7f-a551-2b07fcd5294b.png"
+            alt="Премиальный автомобиль, вид спереди"
+          />
+        </div>
 
         <div className={styles.vehicleStage}>
           <Image
@@ -49,21 +56,20 @@ export function Hero() {
         </div>
       </div>
 
-      <Header />
 
       <div className={styles.content}>
         <div className={styles.copy}>
           <h1 id="hero-title" className={styles.headline}>
-            <span className={styles.headlineLine}>НОВЫЙ ОБРАЗ</span>
+            <span className={styles.headlineLine}>Новый образ</span>
             <span className={`${styles.headlineLine} ${styles.headlineAccent}`}>
-              ВАШЕГО АВТО
+              вашего авто
             </span>
           </h1>
 
           <p className={styles.description}>
-            Премиальные пленки. Профессиональная оклейка.
-            <br />
-            Индивидуальный стиль.
+            <span>Премиальные пленки.</span>
+            <span>Профессиональная оклейка.</span>
+            <span>Индивидуальный стиль.</span>
           </p>
 
           <div className={styles.actions}>
@@ -96,19 +102,6 @@ export function Hero() {
               Примерить на своём авто
             </Button>
 
-            <button
-              type="button"
-              className={styles.videoAction}
-              aria-label="Смотреть видео о студии и процессе (скоро)"
-            >
-              <span className={styles.videoPlay} aria-hidden="true">
-                <Image src="/icons/play.svg" alt="" width={29} height={29} />
-              </span>
-              <span className={styles.videoCopy}>
-                <span className={styles.videoTitle}>Смотреть видео</span>
-                <span className={styles.videoHint}>О студии и процессе</span>
-              </span>
-            </button>
           </div>
         </div>
       </div>

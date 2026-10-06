@@ -297,3 +297,102 @@
     gap: 0.65rem;
   }
 }
+
+/* Sticky premium navigation */
+.header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,9,11,.16);border-bottom-color:rgba(217,188,137,.12);backdrop-filter:blur(0);transition:height .32s var(--ease-out),background-color .32s var(--ease-out),border-color .32s var(--ease-out),backdrop-filter .32s var(--ease-out),box-shadow .32s var(--ease-out)}
+.headerScrolled{background:rgba(5,10,12,.82);border-bottom-color:rgba(217,188,137,.25);backdrop-filter:blur(16px);box-shadow:0 8px 32px rgba(0,0,0,.18)}
+.headerSocials{display:flex;gap:8px}
+.headerSocials a,.mobilePhone{display:grid;place-items:center;width:42px;height:42px;border:1px solid rgba(217,188,137,.48);border-radius:50%;color:var(--color-accent);text-decoration:none;font:600 12px/1 var(--font-body);transition:border-color var(--dur-fast) var(--ease-out),background-color var(--dur-fast) var(--ease-out)}
+.mobilePhone{justify-self:end;margin-right:52px}
+.mobileContact{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-top:1px solid rgba(217,188,137,.22)}
+.mobileContact>a{color:var(--color-text);font:600 20px/1.2 var(--font-body);text-decoration:none}.mobileContact div{display:flex;gap:18px}.mobileContact div a{color:var(--color-accent);text-decoration:none;font:500 14px/1 var(--font-body)}
+@media(hover:hover){.headerSocials a:hover,.mobilePhone:hover{border-color:var(--color-accent);background:rgba(217,188,137,.08)}}
+@media(max-width:767px){
+.header{height:72px}.headerScrolled{height:62px}.headerScrolled .inner{height:62px}
+.inner{grid-template-columns:1fr auto auto;transition:height .32s var(--ease-out)}
+.mobilePhone{margin:0;width:40px;height:40px}
+.menuToggle{margin-left:4px}
+.mobilePanel{position:fixed;top:72px;left:0;right:0;max-height:calc(100svh - 72px);overflow:auto;padding:20px;background:rgba(5,10,12,.96);backdrop-filter:blur(18px)}
+.headerScrolled .mobilePanel{top:62px;max-height:calc(100svh - 62px)}
+.mobileLink{font-size:24px;padding:15px 0}
+}
+@media(min-width:768px) and (max-width:1023px){.mobilePhone{margin-right:52px}}
+@media(min-width:1024px){
+.mobilePhone{display:none}
+.headerScrolled{height:72px}
+.headerScrolled .inner{height:72px;min-height:72px}
+.headerScrolled .wordmark{font-size:32px}
+.headerScrolled .descriptor{font-size:10px}
+.headerScrolled .actions a,.headerScrolled .actions button{min-height:48px}
+}
+
+/* Keep global navigation above transformed/sticky scene layers. */
+.header{z-index:2147483000;isolation:isolate}
+.mobilePanel{z-index:2147483001}
+
+/* Desktop sticky composition: keep the original header rhythm, only add sticky states. */
+@media(min-width:1280px){
+.header{height:var(--header-h)}
+.inner{
+grid-template-columns:clamp(270px,16.5vw,320px) minmax(360px,1fr) auto;
+gap:clamp(24px,2.2vw,42px);
+}
+.navList{gap:clamp(24px,2.1vw,40px)}
+.navLink{white-space:nowrap;font-size:clamp(15px,.88vw,17px)}
+.actions{gap:12px}
+.headerSocials{display:none}
+.actions a:first-of-type{width:clamp(210px,12.5vw,240px)}
+.actions button{width:clamp(220px,13vw,250px)}
+.actions a,.actions button{min-height:56px;padding-inline:18px;font-size:16px}
+.headerScrolled{height:72px}
+.headerScrolled .inner{height:72px}
+.headerScrolled .wordmark{font-size:32px}
+.headerScrolled .descriptor{font-size:10px}
+.headerScrolled .actions a,.headerScrolled .actions button{min-height:46px}
+}
+@media(min-width:1024px) and (max-width:1279px){
+.headerSocials{display:none}
+.navList{gap:22px}
+.navLink{white-space:nowrap;font-size:15px}
+.actions{gap:10px}
+}
+
+/* Mobile menu is an opaque viewport layer, independent of page scene stacking. */
+@media(max-width:1023px){
+.header{isolation:auto}
+.mobilePanel{
+position:fixed;
+inset:72px 0 0;
+z-index:2147483646;
+height:calc(100dvh - 72px);
+max-height:none;
+overflow-y:auto;
+overscroll-behavior:contain;
+background:#050a0c;
+backdrop-filter:none;
+-webkit-backdrop-filter:none;
+border-bottom:0;
+}
+.headerScrolled .mobilePanel{
+top:62px;
+bottom:0;
+height:calc(100dvh - 62px);
+max-height:none;
+}
+}
+
+/* Global header lives outside ScrollScene; mobile menu is portaled to body. */
+.mobilePanel{z-index:2147483647}
+@media(max-width:1023px){
+.mobilePanelScrolled{top:62px;bottom:0;height:calc(100dvh - 62px);max-height:none}
+}
+
+@media(max-width:1023px){
+.mobilePhone{
+background:#e7c17f;
+border-color:#e7c17f;
+}
+.mobilePhone img{
+filter:brightness(0) saturate(100%);
+}
+}

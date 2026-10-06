@@ -35,8 +35,31 @@
   --lh-hero: 0.95;
   --tracking-hero: -0.02em;
 
-  --fs-body-lg: clamp(1.125rem, 1.7vw, 2rem); /* 18–32px */
-  --lh-body-lg: 1.28;
+  /* Section H2 — approved Full HD baseline */
+  --fs-h2: 72px; /* approved Full HD value */
+  --lh-h2: 1.26;
+  --tracking-h2: -1px;
+
+  /* Section kicker — Figma baseline */
+  --fs-kicker: 20px;
+  --lh-kicker: 1;
+  --tracking-kicker: 4px;
+
+  /* Section/body roles — Figma baseline */
+  --fs-body-xl: 32px;
+  --lh-body-xl: 1.25;
+  --fs-body-lg: 24px;
+  --lh-body-lg: 1.375;
+  --fs-body-md: 22px;
+  --lh-body-md: 1.2;
+  --fs-body-sm: 18px;
+  --lh-body-sm: 1.35;
+
+  /* Card roles */
+  --fs-card-title: 40px;
+  --lh-card-title: 1.15;
+  --fs-card-body: 27px;
+  --lh-card-body: 1.2;
 
   --fs-nav: 1.125rem;
   --fs-btn: 1.125rem;
@@ -51,6 +74,7 @@
   --header-h: clamp(4.5rem, 8vw, 7.5rem); /* 72–120px */
   --contact-bar-h: clamp(auto, 7vw, 8.5rem);
 
+  --radius-card: 2px;
   --radius-sm: 7px;
   --radius-md: 8px;
   --radius-lg: 10px;

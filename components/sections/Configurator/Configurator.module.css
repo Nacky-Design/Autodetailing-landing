@@ -1,0 +1,595 @@
+.section {
+  --config-gold: #ffd795;
+  position: relative;
+  isolation: isolate;
+  min-height: 1080px;
+  overflow: clip;
+  background: #050a0c;
+  color: var(--color-text);
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.studioBg {
+  object-fit: cover;
+  object-position: center;
+}
+
+.tone {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 8, 11, 0.28);
+}
+
+.copyVeil {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 690px;
+  background: linear-gradient(
+    90deg,
+    rgba(3, 16, 20, 0.98) 0%,
+    rgba(3, 16, 20, 0.93) 78%,
+    rgba(3, 16, 20, 0.09) 100%
+  );
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  min-height: 1080px;
+}
+
+.copy {
+  position: absolute;
+  top: 176px;
+  left: 71px;
+  width: min(37vw, 709px);
+}
+
+.kickerRow {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  height: 20px;
+}
+
+.kicker {
+  flex: none;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--config-gold);
+}
+
+.kickerLine {
+  width: 188px;
+  height: 1px;
+  background: var(--config-gold);
+  opacity: 0.62;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  margin-top: 48px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  line-height: 76px;
+  letter-spacing: var(--tracking-h2);
+}
+
+.accent {
+  color: var(--config-gold);
+}
+
+.description {
+  margin-top: 30px;
+  width: 608px;
+  max-width: 100%;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 34px;
+  color: var(--color-text-secondary);
+}
+
+.cta {
+  width: 478px;
+  min-height: 86px;
+  margin-top: 48px;
+}
+
+.playerWrap {
+  position: absolute;
+  top: 192px;
+  left: 821px;
+  width: min(1035px, calc(100% - 885px));
+}
+
+.player {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1035 / 642;
+  overflow: hidden;
+  border: 2px solid #77736b;
+  background: #071014;
+  border-radius: 24px;
+  box-shadow: 0 18px 21px rgba(0, 0, 0, 0.44);
+}
+
+.preview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 5, 7, 0.26);
+  transition: background-color var(--dur-med) var(--ease-out);
+}
+
+.playBackdrop {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 110px;
+  height: 110px;
+  translate: -50% -50%;
+  border: 1px solid rgba(255, 215, 149, 0.32);
+  border-radius: 50%;
+  background: rgba(7, 9, 10, 0.76);
+  backdrop-filter: blur(5px);
+  transition:
+    transform var(--dur-med) var(--ease-out),
+    border-color var(--dur-med) var(--ease-out);
+}
+
+.playControl {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: var(--color-accent-fill);
+}
+
+.playTriangle {
+  width: 0;
+  height: 0;
+  margin-left: 6px;
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  border-left: 22px solid var(--color-text-on-accent);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 28px auto minmax(0, 1fr) 29px 29px;
+  align-items: center;
+  gap: 24px;
+  height: 81px;
+  padding: 0 31px;
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--color-text-secondary);
+}
+
+.miniPlay {
+  color: var(--config-gold);
+}
+
+.time {
+  white-space: nowrap;
+}
+
+.track {
+  position: relative;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.track i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 20%;
+  background: var(--config-gold);
+}
+
+.controlIcon {
+  text-align: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .player:hover .scrim {
+    background: rgba(2, 5, 7, 0.12);
+  }
+
+  .player:hover .playBackdrop {
+    transform: scale(1.05);
+    border-color: rgba(255, 215, 149, 0.72);
+  }
+}
+
+/* Same desktop interpolation model as Hero: 1280 → 1920 without a layout jump. */
+@media (min-width: 1280px) and (max-width: 1919px) {
+  .section,
+  .inner {
+    min-height: clamp(720px, 56.25vw, 1080px);
+  }
+
+  .copy {
+    top: clamp(112px, 9.167vw, 176px);
+    left: clamp(47px, 3.698vw, 71px);
+    width: clamp(470px, 36.927vw, 709px);
+  }
+
+  .copyVeil {
+    width: clamp(460px, 35.938vw, 690px);
+  }
+
+  .kickerRow {
+    gap: clamp(20px, 1.823vw, 35px);
+  }
+
+  .kicker {
+    font-size: clamp(14px, 1.042vw, 20px);
+  }
+
+  .kickerLine {
+    width: clamp(112px, 9.792vw, 188px);
+  }
+
+  .title {
+    margin-top: clamp(32px, 2.5vw, 48px);
+    font-size: clamp(48px, 3.75vw, 72px);
+    line-height: 1.056;
+  }
+
+  .description {
+    margin-top: clamp(20px, 1.563vw, 30px);
+    width: clamp(405px, 31.667vw, 608px);
+    font-size: clamp(16px, 1.25vw, 24px);
+    line-height: 1.417;
+  }
+
+  .cta {
+    width: clamp(340px, 24.896vw, 478px);
+    min-height: clamp(68px, 4.479vw, 86px);
+    margin-top: clamp(32px, 2.5vw, 48px);
+  }
+
+  .playerWrap {
+    top: clamp(128px, 10vw, 192px);
+    left: clamp(548px, 42.76vw, 821px);
+    width: clamp(690px, 53.906vw, 1035px);
+  }
+
+  .playBackdrop {
+    width: clamp(82px, 5.729vw, 110px);
+    height: clamp(82px, 5.729vw, 110px);
+  }
+
+  .playControl {
+    width: clamp(62px, 4.271vw, 82px);
+    height: clamp(62px, 4.271vw, 82px);
+  }
+
+  .controls {
+    height: clamp(58px, 4.219vw, 81px);
+    font-size: clamp(14px, 0.938vw, 18px);
+  }
+}
+
+@media (max-width: 1279px) {
+  .section {
+    min-height: auto;
+  }
+
+  .inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.5rem, 6vw, 4rem);
+    min-height: auto;
+    padding-block: clamp(4.5rem, 8vw, 6.5rem);
+  }
+
+  .copy,
+  .playerWrap {
+    position: relative;
+    inset: auto;
+    width: 100%;
+  }
+
+  .copy {
+    left: auto;
+    max-width: 46rem;
+  }
+
+  .kicker {
+    font-size: 1rem;
+  }
+
+  .kickerLine {
+    width: min(12rem, 28vw);
+  }
+
+  .title {
+    margin-top: 2rem;
+    font-size: clamp(48px, 5.625vw, 72px);
+    line-height: 1.12;
+  }
+
+  .description {
+    font-size: clamp(1.125rem, 2.2vw, 1.5rem);
+  }
+
+  .cta {
+    width: min(478px, 100%);
+  }
+
+  .playerWrap {
+    max-width: 1035px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .inner {
+    padding-block: clamp(4rem, 8vw, 5.5rem);
+  }
+
+  .copy {
+    max-width: 42rem;
+    min-width: 0;
+  }
+
+  .title {
+    font-size: clamp(44px, 6.25vw, 64px);
+  }
+
+  .playerWrap {
+    max-width: none;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .inner {
+    gap: 2.25rem;
+    padding-block: 3.5rem;
+    padding-inline: var(--container-pad);
+  }
+
+  .copyVeil {
+    width: 100%;
+    background: rgba(1, 5, 7, 0.72);
+  }
+
+  .kickerRow {
+    gap: 1rem;
+    height: auto;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .kicker {
+    font-size: 0.8125rem;
+    white-space: nowrap;
+  }
+
+  .kickerLine {
+    flex: 1;
+    width: auto;
+  }
+
+  .title {
+    margin-top: 1.75rem;
+    max-width: 100%;
+    font-size: clamp(32px, 8.2vw, 40px);
+    line-height: 1.08;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .title > span {
+    display: inline;
+  }
+
+  .title > span + span::before {
+    content: " ";
+  }
+
+  .title > .mobileTitleLine {
+    display: block;
+  }
+
+  .title > .mobileTitleLine::before {
+    content: none;
+  }
+
+  .description {
+    margin-top: 1.25rem;
+    width: 100%;
+    font-size: 1rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .description br {
+    display: none;
+  }
+
+  .cta {
+    width: 100%;
+    min-width: 0;
+    min-height: 64px;
+    margin-top: 2rem;
+    padding-inline: 1rem;
+    font-size: 1rem;
+  }
+
+  .playBackdrop {
+    width: 74px;
+    height: 74px;
+  }
+
+  .playControl {
+    width: 54px;
+    height: 54px;
+  }
+
+  .playTriangle {
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 16px;
+  }
+
+  .controls {
+    grid-template-columns: 20px auto minmax(48px, 1fr) 20px 20px;
+    gap: 10px;
+    height: 56px;
+    padding-inline: 12px;
+    font-size: 12px;
+    overflow: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrim,
+  .playBackdrop {
+    transition: none;
+  }
+}
+
+
+@media (max-width: 479px) {
+  .inner {
+    gap: 1.75rem;
+    padding-block: 3rem;
+  }
+
+  .kicker {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+  }
+
+  .title {
+    font-size: clamp(30px, 8vw, 36px);
+  }
+
+  .player {
+    border-radius: 16px;
+  }
+
+  .playBackdrop {
+    width: 64px;
+    height: 64px;
+  }
+
+  .playControl {
+    width: 48px;
+    height: 48px;
+  }
+
+  .cta {
+    width: 100%;
+  }
+
+  .controls {
+    grid-template-columns: 18px auto minmax(0, 1fr) 18px;
+  }
+
+  .controlIcon:first-of-type {
+    display: none;
+  }
+}
+
+
+/* Desktop StudioScene owns the shared studio image; this section keeps only its local readability veil. */
+@media (min-width: 1280px) {
+  .section {
+    background: transparent;
+  }
+
+  .media {
+    display: none;
+  }
+
+  .localVeil {
+    position: absolute;
+    inset: 0 auto 0 0;
+    z-index: 0;
+    width: 690px;
+    background: linear-gradient(90deg, rgba(3,16,20,.98) 0%, rgba(3,16,20,.93) 78%, rgba(3,16,20,.09) 100%);
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1919px) {
+  .localVeil {
+    width: clamp(460px, 35.938vw, 690px);
+  }
+}
+
+
+
+
+/* Desktop scene transition.
+   The section is the scroll subject; absolutely positioned children cannot
+   reliably drive their own view timelines. */
+@media (min-width: 1280px) and (prefers-reduced-motion: no-preference) {
+  .section {
+    view-timeline-name: --configurator-scene;
+    view-timeline-axis: block;
+  }
+
+  .copy {
+    animation: studio-config-copy linear both;
+    animation-timeline: --configurator-scene;
+    animation-range: entry 8% entry 34%;
+  }
+
+  .playerWrap {
+    animation: studio-config-player linear both;
+    animation-timeline: --configurator-scene;
+    animation-range: entry 12% entry 42%;
+  }
+
+  .localVeil {
+    animation: studio-config-veil linear both;
+    animation-timeline: --configurator-scene;
+    animation-range: entry 0% entry 32%;
+  }
+}
+
+@keyframes studio-config-copy {
+  from { opacity: 0; transform: translateY(56px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes studio-config-player {
+  from { opacity: 0; transform: translateY(72px) scale(.975); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes studio-config-veil {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

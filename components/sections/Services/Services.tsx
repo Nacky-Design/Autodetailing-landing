@@ -10,19 +10,6 @@ export function Services() {
       className={styles.services}
       aria-labelledby="services-title"
     >
-      <div className={styles.media} aria-hidden="true">
-        <Image
-          className={styles.studioBg}
-          src="/images/services/studio-bg.png"
-          alt=""
-          fill
-          sizes="100vw"
-          quality={85}
-        />
-        <div className={styles.dim} />
-        <div className={styles.vignette} />
-      </div>
-
       <Container className={styles.inner}>
         <header className={styles.heading}>
           <div className={styles.kickerRow}>
