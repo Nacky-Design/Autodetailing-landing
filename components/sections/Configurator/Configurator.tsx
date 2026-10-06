@@ -27,20 +27,17 @@ export function Configurator() {
       <Container className={styles.inner}>
         <div className={styles.copy}>
           <div className={styles.kickerRow}>
-            <p className={styles.kicker}>Интерактивный конфигуратор</p>
+            <p className={styles.kicker}>ОНЛАЙН-КОНФИГУРАТОР</p>
             <span className={styles.kickerLine} aria-hidden="true" />
           </div>
 
           <h2 id="configurator-title" className={styles.title}>
-            <span>Соберите свой</span>
-            <span className={styles.accent}>идеальный образ</span>
-            <span>автомобиля</span>
+            <span>Примерьте новый цвет</span>
+            <span className={styles.accent}>на своём автомобиле</span>
           </h2>
 
           <p className={styles.description}>
-            Выберите автомобиль, материал и цвет.
-            <br />
-            Посмотрите результат до начала работ — прямо в браузере.
+            Выберите цвет и варианты оклейки и посмотрите, как будет выглядеть ваш автомобиль.
           </p>
 
           <Button
@@ -50,7 +47,7 @@ export function Configurator() {
             rel="noopener noreferrer"
             size="lg"
           >
-            Открыть конфигуратор
+            ПРИМЕРИТЬ НА СВОЙ АВТО
           </Button>
         </div>
 
