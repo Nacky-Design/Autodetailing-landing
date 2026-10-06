@@ -32,8 +32,9 @@ export function Configurator() {
           </div>
 
           <h2 id="configurator-title" className={styles.title}>
-            <span>Примерьте новый цвет</span>
-            <span className={styles.accent}>на своём автомобиле</span>
+            <span className={styles.mobileTitleLine}>Примерьте новый</span>
+            <span className={styles.mobileTitleLine}>цвет на своём</span>
+            <span className={`${styles.accent} ${styles.mobileTitleLine}`}>автомобиле</span>
           </h2>
 
           <p className={styles.description}>
