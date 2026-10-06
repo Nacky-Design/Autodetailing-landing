@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Header } from "@/components/layout/Header";
 import { Button } from "@/components/ui/Button";
 import { CARKVIZ_URL, SITE } from "@/lib/constants";
 import { CONTACT } from "@/lib/data/contacts";
@@ -49,7 +48,6 @@ export function Hero() {
         </div>
       </div>
 
-      <Header />
 
       <div className={styles.content}>
         <div className={styles.copy}>
