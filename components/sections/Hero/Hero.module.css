@@ -1049,3 +1049,17 @@
   .actions { margin-top: 16px; }
   .vehicleStage { bottom: 82px; }
 }
+
+/* Contact utilities now live in the sticky header. */
+.contactBar{display:none}
+@media(min-width:1280px){
+.hero{--contact-h:0px;--visual-stage-h:calc(100dvh - var(--header-h))}
+.tone,.leftVeil{bottom:0}
+.content{padding-bottom:var(--content-bias)}
+}
+@media(max-width:767px){
+.vehicleStage{bottom:18px}
+}
+@media(max-width:767px) and (max-height:760px){
+.vehicleStage{bottom:12px}
+}
