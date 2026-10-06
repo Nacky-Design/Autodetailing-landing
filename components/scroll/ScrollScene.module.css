@@ -41,18 +41,21 @@
     z-index: 1;
   }
 
-  /* Hold the final StudioScene state before the next sheet covers it.
-     220vh = ~120vh viewing pause + ~100vh Pricing cover travel. */
+  /* Portfolio is the final studio state: one viewport to look at it,
+     then one viewport for Pricing to cover it from below. */
   .content::after {
     content: "";
     display: block;
-    height: 220vh;
+    height: 200vh;
     pointer-events: none;
   }
 
   .content :global(#portfolio) {
     position: sticky;
     top: 0;
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
   }
 }
 
