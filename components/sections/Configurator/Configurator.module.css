@@ -547,3 +547,52 @@
     width: clamp(460px, 35.938vw, 690px);
   }
 }
+
+
+/* Desktop scene transition: Configurator replaces Services without moving the shared studio. */
+@media (min-width: 1280px) and (prefers-reduced-motion: no-preference) {
+  .copy {
+    animation: studio-config-copy linear both;
+    animation-timeline: view();
+    animation-range: entry 4% entry 31%;
+  }
+
+  .playerWrap {
+    animation: studio-config-player linear both;
+    animation-timeline: view();
+    animation-range: entry 8% entry 38%;
+  }
+
+  .localVeil {
+    animation: studio-config-veil linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+}
+
+@keyframes studio-config-copy {
+  from {
+    opacity: 0;
+    transform: translateY(38px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes studio-config-player {
+  from {
+    opacity: 0;
+    transform: translateY(52px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes studio-config-veil {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
