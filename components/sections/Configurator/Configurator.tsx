@@ -11,8 +11,6 @@ export function Configurator() {
       className={styles.section}
       aria-labelledby="configurator-title"
     >
-      <div className={styles.localVeil} aria-hidden="true" />
-
       <Container className={styles.inner}>
         <div className={styles.copy}>
           <div className={styles.kickerRow}>
