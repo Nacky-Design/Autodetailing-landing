@@ -6,6 +6,7 @@ import { Portfolio } from "@/components/sections/Portfolio/Portfolio";
 import { ScrollScene } from "@/components/scroll/ScrollScene";
 import { Pricing } from "@/components/sections/Pricing/Pricing";
 import { Faq } from "@/components/sections/Faq/Faq";
+import { FinalCta } from "@/components/sections/FinalCta/FinalCta";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       </ScrollScene>
       <Pricing />
       <Faq />
+      <FinalCta />
     </main>
   );
 }
