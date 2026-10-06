@@ -82,8 +82,9 @@
   margin-top: 45px;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 72px;
-  line-height: 1.08;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--tracking-h2);
   letter-spacing: -0.02em;
 }
 
