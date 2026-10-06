@@ -54,9 +54,9 @@ export function Hero() {
       <div className={styles.content}>
         <div className={styles.copy}>
           <h1 id="hero-title" className={styles.headline}>
-            <span className={styles.headlineLine}>НОВЫЙ ОБРАЗ</span>
+            <span className={styles.headlineLine}>Новый образ</span>
             <span className={`${styles.headlineLine} ${styles.headlineAccent}`}>
-              ВАШЕГО АВТО
+              вашего авто
             </span>
           </h1>
 
