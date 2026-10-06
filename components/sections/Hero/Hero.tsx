@@ -20,6 +20,19 @@ export function Hero() {
         <div className={styles.tone} />
         <div className={styles.leftVeil} />
 
+        <div className={styles.mobileVehicleStage}>
+          <Image
+            className={styles.mobileVehicle}
+            src="/images/hero/vehicle-front-mobile.png"
+            alt="Премиальный автомобиль, вид спереди"
+            width={1246}
+            height={1262}
+            priority
+            quality={90}
+            sizes="100vw"
+          />
+        </div>
+
         <div className={styles.vehicleStage}>
           <Image
             className={styles.vehicleShadow}
