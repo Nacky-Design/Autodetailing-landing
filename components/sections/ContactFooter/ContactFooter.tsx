@@ -1,25 +1,23 @@
 import styles from "./ContactFooter.module.css";
+const bg="https://www.figma.com/api/mcp/asset/133ec847-e43b-4cfd-af46-21c7aac80fc4.png";
+const send="https://www.figma.com/api/mcp/asset/9256bad0-aac5-46b0-97c4-7c137a8726f8.svg";
+const logo="https://www.figma.com/api/mcp/asset/2a5888de-65dd-4394-9f8e-276d0404687d.svg";
+const parking="https://www.figma.com/api/mcp/asset/cf149be5-6b2e-4df0-9c9a-a0082c5e4e36.svg";
+const clock="https://www.figma.com/api/mcp/asset/0341c8af-a939-4c2d-9e74-b61ba3d19314.svg";
+const pin="https://www.figma.com/api/mcp/asset/11688031-a073-4050-b6b1-51ea4b2b3876.svg";
 
-const bg="https://www.figma.com/api/mcp/asset/a6c6ac23-1851-4472-9818-b327e37ba592.png";
-const logo="https://www.figma.com/api/mcp/asset/90c0cdcc-6202-442a-9eb4-a20fc685c514.svg";
-
-export function ContactFooter(){
- return <section id="contacts" className={styles.section} style={{backgroundImage:`linear-gradient(rgba(3,9,12,.74),rgba(3,9,12,.86)),url("${bg}")`}}>
-  <div className={styles.inner}>
-   <header className={styles.heading}><div className={styles.kicker}>КОНТАКТЫ<i/></div><h2>Будем рады вашему <span>обращению</span></h2><p>Проконсультируем, подберём решение и запишем на удобное время.</p></header>
-   <div className={styles.content}>
-    <div className={styles.contacts}>
-      <a href="tel:+70000000000"><small>Телефон</small><strong>+7 987 654-32-10</strong></a>
-      <a href="mailto:info@atelier01.ru"><small>E-mail</small><strong>info@atelier01.ru</strong></a>
-      <div><small>Адрес</small><strong>г. Самара, ул. Лесная, 12 — БЦ «Кристалл», 1 этаж</strong></div>
-      <div><small>Режим работы</small><strong>Ежедневно с 10:00 до 21:00</strong></div>
-    </div>
-    <div className={styles.actions}>
-      <a className={styles.primary} href="tel:+70000000000">Примерить на своём авто <span>↗</span></a>
-      <div className={styles.socials}><a href="#" aria-label="Telegram">TG</a><a href="#" aria-label="VK">VK</a><a href="#" aria-label="WhatsApp">WA</a></div>
-    </div>
-   </div>
-  </div>
-  <footer className={styles.footer}><img src={logo} alt="ATELIER 01"/><nav><a href="#top">Главная</a><a href="#services">Услуги</a><a href="#portfolio">Работы</a><a href="#pricing">Прайс</a><a href="#faq">FAQ</a></nav><div className={styles.legal}><span>© 2026 ATELIER 01</span><a href="#">Политика конфиденциальности</a></div></footer>
- </section>
-}
+export function ContactFooter(){return <section id="contacts" className={styles.section}>
+<img className={styles.bg} src={bg} alt=""/><div className={styles.leftShade}/><div className={styles.tone}/>
+<div className={styles.heading}><div className={styles.kicker}>КОНТАКТЫ<i/></div><h2>Будем рады<br/><span>вашему обращению</span></h2><p>Проконсультируем, подберём решение<br/>и запишем на удобное время.</p></div>
+<div className={styles.phone}><strong>+7 987 654-32-10</strong><span>Ежедневно с 10:00 до 21:00</span></div>
+<a className={styles.cta} href="#configurator">Примерить на своём авто</a>
+<div className={styles.info}>
+<div className={styles.infoItem}><img src={pin} alt=""/><div><strong>Адрес студии</strong><span>г. Самара, ул. Лесная, 12<br/>БЦ «Кристалл», 1 этаж</span></div></div>
+<div className={styles.infoItem}><img src={clock} alt=""/><div><strong>Часы работы</strong><span>Ежедневно<br/>с 10:00 до 21:00</span></div></div>
+<div className={styles.infoItem}><img src={parking} alt=""/><div><strong>Парковка</strong><span>Бесплатная парковка<br/>для наших клиентов</span></div></div>
+</div>
+<footer className={styles.footer}><div className={styles.brand}><img src={logo} alt=""/><div><strong>ATELIER 01</strong><span>DETAILING &amp; STYLE</span></div></div>
+<nav><a href="#services">Услуги</a><a href="#configurator">Конфигуратор</a><a href="#portfolio">Портфолио</a><a href="#pricing">Стоимость</a><a href="#reviews">Отзывы</a><a href="#faq">FAQ</a><a href="#contacts">Контакты</a></nav>
+<div className={styles.social}><a href="#"><img src={send} alt="Telegram"/></a><a href="#">VK</a></div>
+<div className={styles.legal}><span>© 2026 ATELIER 01. Детейлинг и стайлинг автомобилей в Самаре.</span><div><a href="#">Политика конфиденциальности</a><a href="#">Карта сайта</a></div></div></footer>
+</section>}
