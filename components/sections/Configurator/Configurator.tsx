@@ -11,18 +11,7 @@ export function Configurator() {
       className={styles.section}
       aria-labelledby="configurator-title"
     >
-      <div className={styles.media} aria-hidden="true">
-        <Image
-          className={styles.studioBg}
-          src="/images/services/studio-bg.png"
-          alt=""
-          fill
-          sizes="100vw"
-          quality={85}
-        />
-        <span className={styles.tone} />
-        <span className={styles.copyVeil} />
-      </div>
+      <div className={styles.localVeil} aria-hidden="true" />
 
       <Container className={styles.inner}>
         <div className={styles.copy}>
