@@ -384,8 +384,9 @@
     align-items: baseline;
     column-gap: clamp(1.25rem, 2.7vw, 3.25rem);
     row-gap: 0.15em;
-    font-size: clamp(2.75rem, 3.85vw, 4.625rem);
-    line-height: 1.243;
+    font-size: min(var(--fs-h2), 3.75vw);
+    line-height: var(--lh-h2);
+    letter-spacing: var(--tracking-h2);
   }
 
   .grid {
