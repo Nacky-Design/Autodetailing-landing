@@ -5,6 +5,7 @@ import { About } from "@/components/sections/About/About";
 import { Portfolio } from "@/components/sections/Portfolio/Portfolio";
 import { ScrollScene } from "@/components/scroll/ScrollScene";
 import { Pricing } from "@/components/sections/Pricing/Pricing";
+import { Faq } from "@/components/sections/Faq/Faq";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <Portfolio />
       </ScrollScene>
       <Pricing />
+      <Faq />
     </main>
   );
 }
