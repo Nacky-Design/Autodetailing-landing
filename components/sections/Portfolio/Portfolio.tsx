@@ -50,6 +50,7 @@ export function Portfolio() {
   };
 
   return (
+    <div className={styles.stage}>
     <section id="portfolio" className={styles.section} aria-labelledby="portfolio-title">
       <span className={styles.sceneTone} aria-hidden="true" />
       <div className={styles.header}>
@@ -89,5 +90,6 @@ export function Portfolio() {
         ))}
       </div>
     </section>
+    </div>
   );
 }
