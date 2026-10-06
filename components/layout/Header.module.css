@@ -329,3 +329,30 @@
 /* Keep global navigation above transformed/sticky scene layers. */
 .header{z-index:2147483000;isolation:isolate}
 .mobilePanel{z-index:2147483001}
+
+/* Desktop sticky composition: keep the original header rhythm, only add sticky states. */
+@media(min-width:1280px){
+.header{height:var(--header-h)}
+.inner{
+grid-template-columns:clamp(270px,16.5vw,320px) minmax(360px,1fr) auto;
+gap:clamp(24px,2.2vw,42px);
+}
+.navList{gap:clamp(24px,2.1vw,40px)}
+.navLink{white-space:nowrap;font-size:clamp(15px,.88vw,17px)}
+.actions{gap:12px}
+.headerSocials{display:none}
+.actions a:first-of-type{width:clamp(210px,12.5vw,240px)}
+.actions button{width:clamp(220px,13vw,250px)}
+.actions a,.actions button{min-height:56px;padding-inline:18px;font-size:16px}
+.headerScrolled{height:72px}
+.headerScrolled .inner{height:72px}
+.headerScrolled .wordmark{font-size:32px}
+.headerScrolled .descriptor{font-size:10px}
+.headerScrolled .actions a,.headerScrolled .actions button{min-height:46px}
+}
+@media(min-width:1024px) and (max-width:1279px){
+.headerSocials{display:none}
+.navList{gap:22px}
+.navLink{white-space:nowrap;font-size:15px}
+.actions{gap:10px}
+}
