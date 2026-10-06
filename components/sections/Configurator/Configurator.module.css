@@ -237,7 +237,12 @@
 
   .copy {
     top: clamp(112px, 9.167vw, 176px);
+    left: clamp(47px, 3.698vw, 71px);
     width: clamp(470px, 36.927vw, 709px);
+  }
+
+  .copyVeil {
+    width: clamp(460px, 35.938vw, 690px);
   }
 
   .kickerRow {
@@ -254,13 +259,15 @@
 
   .title {
     margin-top: clamp(32px, 2.5vw, 48px);
-    font-size: min(72px, 3.75vw);
+    font-size: clamp(48px, 3.75vw, 72px);
+    line-height: 1.056;
   }
 
   .description {
     margin-top: clamp(20px, 1.563vw, 30px);
     width: clamp(405px, 31.667vw, 608px);
-    font-size: clamp(17px, 1.302vw, 25px);
+    font-size: clamp(16px, 1.25vw, 24px);
+    line-height: 1.417;
   }
 
   .cta {
@@ -312,6 +319,7 @@
   }
 
   .copy {
+    left: auto;
     max-width: 46rem;
   }
 
@@ -325,7 +333,8 @@
 
   .title {
     margin-top: 2rem;
-    font-size: clamp(3rem, 7vw, 4.75rem);
+    font-size: clamp(48px, 5.625vw, 72px);
+    line-height: 1.12;
   }
 
   .description {
@@ -338,6 +347,24 @@
 
   .playerWrap {
     max-width: 1035px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .inner {
+    padding-block: clamp(4rem, 8vw, 5.5rem);
+  }
+
+  .copy {
+    max-width: 42rem;
+  }
+
+  .title {
+    font-size: clamp(44px, 6.25vw, 64px);
+  }
+
+  .playerWrap {
+    max-width: none;
   }
 }
 
@@ -368,12 +395,14 @@
 
   .title {
     margin-top: 1.75rem;
-    font-size: clamp(2.5rem, 11vw, 3.25rem);
+    font-size: clamp(38px, 10vw, 52px);
+    line-height: 1.08;
   }
 
   .description {
     margin-top: 1.25rem;
     font-size: 1rem;
+    line-height: 1.45;
   }
 
   .description br {
@@ -414,5 +443,34 @@
   .scrim,
   .playBackdrop {
     transition: none;
+  }
+}
+
+
+@media (max-width: 479px) {
+  .inner {
+    gap: 1.75rem;
+    padding-block: 3rem;
+  }
+
+  .kicker {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+  }
+
+  .title {
+    font-size: clamp(34px, 10.5vw, 44px);
+  }
+
+  .cta {
+    width: 100%;
+  }
+
+  .controls {
+    grid-template-columns: 18px auto minmax(0, 1fr) 18px;
+  }
+
+  .controlIcon:first-of-type {
+    display: none;
   }
 }
