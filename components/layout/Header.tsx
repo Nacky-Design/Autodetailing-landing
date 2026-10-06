@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { CARKVIZ_URL, SITE } from "@/lib/constants";
@@ -15,7 +16,12 @@ type HeaderProps = {
 export function Header({ activeHref = "#services" }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const menuId = useId();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 72);
@@ -130,10 +136,10 @@ export function Header({ activeHref = "#services" }: HeaderProps) {
         </button>
       </div>
 
-      {open ? (
+      {open && mounted ? createPortal(
         <div
           id={menuId}
-          className={`${styles.mobilePanel} ${styles.mobilePanelOpen}`}
+          className={`${styles.mobilePanel} ${styles.mobilePanelOpen} ${scrolled ? styles.mobilePanelScrolled : ""}`}
         >
           <nav aria-label="Мобильная навигация">
             <ul className={styles.mobileList}>
@@ -193,7 +199,8 @@ export function Header({ activeHref = "#services" }: HeaderProps) {
               Заказать звонок
             </Button>
           </div>
-        </div>
+        </div>,
+        document.body
       ) : null}
     </header>
   );
