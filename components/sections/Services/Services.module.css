@@ -447,3 +447,29 @@
     display: none;
   }
 }
+
+
+/* Desktop scene transition: content settles in while the shared studio remains fixed. */
+@media (min-width: 1280px) and (prefers-reduced-motion: no-preference) {
+  .heading,
+  .grid {
+    animation: studio-services-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 8% entry 34%;
+  }
+
+  .grid {
+    animation-range: entry 12% entry 40%;
+  }
+}
+
+@keyframes studio-services-reveal {
+  from {
+    opacity: 0.42;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
