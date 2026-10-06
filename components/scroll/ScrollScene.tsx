@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 import styles from "./ScrollScene.module.css";
 
@@ -28,7 +29,18 @@ export function ScrollScene({
       data-scroll-scene={id}
       aria-label={label}
     >
-      {children}
+      <div className={styles.studioBackdrop} aria-hidden="true">
+        <Image
+          className={styles.studioImage}
+          src="/images/services/studio-bg.png"
+          alt=""
+          fill
+          sizes="100vw"
+          quality={85}
+        />
+        <span className={styles.studioTone} />
+      </div>
+      <div className={styles.content}>{children}</div>
     </div>
   );
 }
