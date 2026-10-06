@@ -4,6 +4,7 @@ import { useEffect, useId, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { CARKVIZ_URL, SITE } from "@/lib/constants";
+import { CONTACT } from "@/lib/data/contacts";
 import { NAV_LINKS } from "@/lib/data/nav";
 import styles from "./Header.module.css";
 
@@ -13,7 +14,15 @@ type HeaderProps = {
 
 export function Header({ activeHref = "#services" }: HeaderProps) {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const menuId = useId();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 72);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -29,7 +38,7 @@ export function Header({ activeHref = "#services" }: HeaderProps) {
   }, [open]);
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${scrolled ? styles.headerScrolled : ""}`}>
       <div className={styles.inner}>
         <a className={styles.brand} href="#top" aria-label={SITE.name}>
           <span className={styles.wordmark}>
@@ -59,6 +68,10 @@ export function Header({ activeHref = "#services" }: HeaderProps) {
         </nav>
 
         <div className={styles.actions}>
+          <div className={styles.headerSocials}>
+            <a href={CONTACT.messengers.telegram} aria-label="Telegram"><Image src="/icons/send.svg" alt="" width={20} height={20}/></a>
+            <a href={CONTACT.messengers.vk} aria-label="VK">VK</a>
+          </div>
           <Button
             href={CARKVIZ_URL}
             target="_blank"
@@ -101,6 +114,10 @@ export function Header({ activeHref = "#services" }: HeaderProps) {
           </Button>
         </div>
 
+        <a className={styles.mobilePhone} href={CONTACT.phone.href} aria-label="Позвонить">
+          <Image src="/icons/phone.svg" alt="" width={20} height={20}/>
+        </a>
+
         <button
           type="button"
           className={styles.menuToggle}
@@ -133,6 +150,10 @@ export function Header({ activeHref = "#services" }: HeaderProps) {
               ))}
             </ul>
           </nav>
+          <div className={styles.mobileContact}>
+            <a href={CONTACT.phone.href}>{CONTACT.phone.display}</a>
+            <div><a href={CONTACT.messengers.telegram}>Telegram</a><a href={CONTACT.messengers.vk}>VK</a></div>
+          </div>
           <div className={styles.mobileActions}>
             <Button
               href={CARKVIZ_URL}
