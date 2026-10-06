@@ -435,3 +435,15 @@
     margin-top: 2.6875rem;
   }
 }
+
+
+/* Desktop StudioScene owns the shared studio backdrop. */
+@media (min-width: 1280px) {
+  .services {
+    background: transparent;
+  }
+
+  .media {
+    display: none;
+  }
+}
