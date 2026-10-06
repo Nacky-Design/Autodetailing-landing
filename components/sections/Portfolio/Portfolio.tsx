@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import styles from "./Portfolio.module.css";
 
 const works = [
@@ -14,6 +14,7 @@ const filters = ["Все работы", "Оклейка", "Защитная пл
 export function Portfolio() {
   const [filter, setFilter] = useState("Все работы");
   const [offset, setOffset] = useState(0);
+  const touchStartX = useRef<number | null>(null);
   const filtered = useMemo(() => filter === "Все работы" ? works : works.filter((work) => work.filter === filter), [filter]);
   const looped = useMemo(() => filtered.length ? Array.from({ length: Math.max(8, filtered.length * 3) }, (_, i) => filtered[(i + offset) % filtered.length]) : [], [filtered, offset]);
 
@@ -21,6 +22,19 @@ export function Portfolio() {
     const length = Math.max(filtered.length, 1);
     return (value + delta + length) % length;
   });
+
+  const onTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = event.touches[0]?.clientX ?? null;
+  };
+
+  const onTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartX.current === null) return;
+    const endX = event.changedTouches[0]?.clientX ?? touchStartX.current;
+    const delta = endX - touchStartX.current;
+    touchStartX.current = null;
+    if (Math.abs(delta) < 42) return;
+    move(delta < 0 ? 1 : -1);
+  };
 
   return (
     <section id="portfolio" className={styles.section} aria-labelledby="portfolio-title">
@@ -35,7 +49,7 @@ export function Portfolio() {
         </div>
       </div>
 
-      <div className={styles.carousel}>
+      <div className={styles.carousel} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         <div className={styles.track}>
           {looped.map((work, index) => (
             <article className={styles.card} key={`${work.title}-${index}`}>
