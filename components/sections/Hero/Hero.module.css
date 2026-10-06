@@ -1292,3 +1292,8 @@ filter:blur(8px);
 transform:scaleX(1.04);
 }
 }
+
+/* Fine tune: tuck mobile contact shadow slightly higher under the tyres. */
+@media(max-width:767px){
+.mobileVehicleStage::before{bottom:3.8%}
+}
