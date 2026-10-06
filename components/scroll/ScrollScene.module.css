@@ -36,3 +36,18 @@
     background: rgba(2, 8, 11, 0.28);
   }
 }
+
+
+@media (min-width: 1280px) and (prefers-reduced-motion: no-preference) {
+  .studioBackdrop {
+    animation: studio-backdrop-breathe linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+}
+
+@keyframes studio-backdrop-breathe {
+  0% { filter: brightness(0.92); }
+  50% { filter: brightness(1); }
+  100% { filter: brightness(0.94); }
+}
