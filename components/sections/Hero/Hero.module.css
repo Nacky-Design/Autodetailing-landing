@@ -840,7 +840,7 @@
   }
 }
 
-/* ——— Mobile-first composition: one coherent visual stage ——— */
+/* ——— Mobile-first composition: natural flow above anchored car ——— */
 @media (max-width: 767px) {
   .hero {
     --header-h: 72px;
@@ -849,60 +849,25 @@
     max-height: 900px;
   }
 
-  .studioBg {
-    object-position: 58% bottom;
-  }
+  .studioBg { object-position: 58% bottom; }
 
   .tone {
     top: var(--header-h);
     bottom: 0;
-    background: rgba(5, 8, 11, 0.06);
+    background: rgba(5, 8, 11, 0.08);
   }
 
   .leftVeil {
     top: var(--header-h);
     bottom: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(5, 7, 8, 0.76) 0%,
-      rgba(5, 7, 8, 0.46) 22%,
-      rgba(5, 7, 8, 0.04) 48%,
-      rgba(5, 7, 8, 0.12) 72%,
-      rgba(5, 7, 8, 0.74) 100%
-    );
-  }
-
-  .vehicleStage {
-    top: auto;
-    right: -18px;
-    bottom: 174px;
-    width: min(116vw, 490px);
-    opacity: 1;
-  }
-
-  .vehicleStage::before {
-    filter: blur(8px);
-    opacity: 0.5;
-  }
-
-  .vehicleStage::after {
-    filter: blur(1px);
-    opacity: 0.66;
-  }
-
-  .vehicleShadow {
-    opacity: 0.38;
-  }
-
-  .vehicle {
-    filter: brightness(1.08) contrast(1.02);
+    background: linear-gradient(180deg, rgba(5,7,8,.78) 0%, rgba(5,7,8,.48) 30%, rgba(5,7,8,.05) 58%, rgba(5,7,8,.42) 100%);
   }
 
   .content {
     flex: 1;
     align-items: flex-start;
     min-height: 0;
-    padding: clamp(34px, 6svh, 52px) 20px 0;
+    padding: 28px 20px 0;
   }
 
   .copy {
@@ -913,39 +878,33 @@
 
   .headline {
     padding: 0;
-    font-size: clamp(40px, 10.7vw, 44px);
-    line-height: 0.98;
-    letter-spacing: -0.018em;
+    font-size: clamp(38px, 10.25vw, 42px);
+    line-height: .98;
+    letter-spacing: -.018em;
   }
 
   .description {
-    margin-top: 18px;
+    margin-top: 16px;
     max-width: 350px;
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.38;
-    color: rgba(244, 244, 242, 0.82);
+    color: rgba(244,244,242,.82);
   }
 
-  .description br {
-    display: none;
-  }
+  .description br { display: none; }
 
   .actions {
-    position: absolute;
-    z-index: 7;
-    right: 20px;
-    bottom: 104px;
-    left: 20px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     gap: 12px;
-    margin: 0;
+    width: 100%;
+    margin-top: 24px;
     padding: 0;
   }
 
   .primaryCta {
-    grid-column: 1 / -1;
     width: 100%;
     height: 56px;
     min-height: 56px;
@@ -956,155 +915,77 @@
   }
 
   .videoAction {
-    grid-column: 1;
-    align-self: center;
+    align-self: flex-start;
     gap: 10px;
-    width: fit-content;
   }
 
   .videoPlay {
     width: 42px;
     height: 42px;
-    border-color: rgba(231, 193, 127, 0.72);
-    background: rgba(5, 7, 8, 0.34);
+    border-color: rgba(231,193,127,.72);
+    background: rgba(5,7,8,.34);
     backdrop-filter: blur(8px);
   }
 
-  .videoPlay img {
-    width: 18px;
-    height: 18px;
+  .videoPlay img { width: 18px; height: 18px; }
+  .videoCopy { gap: 1px; }
+  .videoTitle { font-size: 15px; }
+  .videoHint { font-size: 11px; }
+
+  .vehicleStage {
+    top: auto;
+    right: -18px;
+    bottom: 84px;
+    width: min(116vw, 490px);
+    opacity: 1;
   }
 
-  .videoCopy {
-    gap: 1px;
-  }
+  .vehicleStage::before { filter: blur(8px); opacity: .5; }
+  .vehicleStage::after { filter: blur(1px); opacity: .66; }
+  .vehicleShadow { opacity: .38; }
+  .vehicle { filter: brightness(1.08) contrast(1.02); }
 
-  .videoTitle {
-    font-size: 15px;
-  }
-
-  .videoHint {
-    font-size: 11px;
-  }
-
-  /* Contact data is integrated into the same stage instead of a detached footer. */
   .contactBar {
     position: absolute;
     z-index: 6;
     right: 0;
     bottom: 0;
     left: 0;
-    height: 92px;
+    height: 78px;
     margin: 0;
-    border-top: 1px solid rgba(217, 188, 137, 0.24);
-    background: linear-gradient(
-      180deg,
-      rgba(5, 7, 8, 0.34),
-      rgba(5, 7, 8, 0.82)
-    );
+    border-top: 1px solid rgba(217,188,137,.22);
+    background: linear-gradient(180deg, rgba(5,7,8,.28), rgba(5,7,8,.78));
     backdrop-filter: blur(10px);
   }
 
   .contactInner {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0,1fr) auto;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     height: 100%;
-    padding: 12px 20px;
+    padding: 10px 20px;
   }
 
-  .contactInfo {
-    gap: 5px;
-    min-width: 0;
-  }
-
-  .contactDetail {
-    gap: 8px;
-    min-width: 0;
-  }
-
-  .contactIcon {
-    width: 18px;
-    height: 18px;
-    margin-top: 1px;
-  }
-
-  .contactPrimary {
-    font-size: 12px;
-    line-height: 1.2;
-  }
-
-  .contactSecondary {
-    display: none;
-  }
-
-  .messengers {
-    display: contents;
-  }
-
-  .messengerPrompt {
-    display: none;
-  }
-
-  .socialActions {
-    grid-column: 2;
-    grid-row: 1;
-    gap: 7px;
-  }
-
-  .socialBtn {
-    width: 36px;
-    height: 36px;
-    font-size: 11px;
-    background: rgba(255, 255, 255, 0.025);
-  }
-
-  .socialBtn img {
-    width: 18px;
-    height: 18px;
-  }
+  .contactInfo { gap: 4px; min-width: 0; }
+  .contactDetail { gap: 7px; min-width: 0; }
+  .contactIcon { width: 17px; height: 17px; margin-top: 1px; }
+  .contactPrimary { font-size: 11.5px; line-height: 1.15; }
+  .contactSecondary, .messengerPrompt { display: none; }
+  .messengers { display: contents; }
+  .socialActions { grid-column: 2; grid-row: 1; gap: 6px; }
+  .socialBtn { width: 34px; height: 34px; font-size: 10px; background: rgba(255,255,255,.025); }
+  .socialBtn img { width: 17px; height: 17px; }
 }
 
 @media (max-width: 767px) and (max-height: 760px) {
-  .hero {
-    min-height: 640px;
-  }
-
-  .content {
-    padding-top: 24px;
-  }
-
-  .headline {
-    font-size: 37px;
-  }
-
-  .description {
-    margin-top: 12px;
-    font-size: 15px;
-  }
-
-  .vehicleStage {
-    bottom: 160px;
-    width: 108vw;
-  }
-
-  .actions {
-    bottom: 94px;
-    gap: 7px;
-  }
-
-  .primaryCta {
-    height: 48px;
-    min-height: 48px;
-  }
-
-  .videoPlay {
-    width: 36px;
-    height: 36px;
-  }
-
-  .contactBar {
-    height: 82px;
-  }
+  .hero { min-height: 640px; }
+  .content { padding-top: 20px; }
+  .headline { font-size: 36px; }
+  .description { margin-top: 10px; font-size: 14px; }
+  .actions { margin-top: 16px; gap: 8px; }
+  .primaryCta { height: 48px; min-height: 48px; }
+  .videoPlay { width: 36px; height: 36px; }
+  .vehicleStage { bottom: 72px; width: 108vw; }
+  .contactBar { height: 68px; }
 }
