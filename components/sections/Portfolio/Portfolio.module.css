@@ -38,3 +38,14 @@
 @media(min-width:1920px) and (min-height:900px){
   .filters{margin-right:593px}
 }
+
+/* Third Full-HD pass: place filters on the third-card guide and keep the title at its intended width. */
+@media(min-width:1280px) and (min-height:900px){
+  .header{position:relative;display:block}
+  .header>div:first-child{width:min(760px,42vw)}
+  .filters{position:absolute;left:calc(5.52vw + (2 * (min(532px,49.26dvh) + 26px)));right:auto;bottom:3px;margin:0}
+  .stage>.section .pagination{bottom:clamp(72px,7.4dvh,80px)}
+}
+@media(min-width:1920px) and (min-height:900px){
+  .filters{left:calc(50% - 854px + 1116px)}
+}
