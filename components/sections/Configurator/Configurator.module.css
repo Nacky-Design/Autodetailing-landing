@@ -593,3 +593,9 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+/* Height-aware desktop and centered wide-screen canvas. */
+
+@media (min-width:1920px){.copy{left:max(71px,calc(50% - 889px))}.playerWrap{left:calc(50% - 139px)}}
+@media (min-width:1280px) and (max-height:899px){.section,.inner{min-height:100vh}.copy{top:clamp(76px,13vh,124px)}.title{margin-top:clamp(24px,4.5vh,40px);font-size:clamp(48px,7vh,64px)}.description{margin-top:clamp(16px,3vh,24px);font-size:clamp(18px,2.7vh,22px)}.cta{margin-top:clamp(24px,4vh,36px);min-height:clamp(62px,8vh,76px)}.playerWrap{top:clamp(84px,14vh,132px);width:min(53.906vw,calc((100vh - 190px)*1.612))}.controls{height:clamp(54px,7vh,68px)}}
+@media (min-width:1280px) and (max-height:719px){.section,.inner{min-height:720px}}
