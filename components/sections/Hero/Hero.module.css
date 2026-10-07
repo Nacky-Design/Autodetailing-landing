@@ -1297,3 +1297,8 @@ transform:scaleX(1.04);
 @media(max-width:767px){
 .mobileVehicleStage::before{bottom:3.8%}
 }
+
+/* 1440×900 QA: remove the residual hero separator. */
+@media(min-width:1280px) and (min-height:720px) and (max-height:960px){
+  .contactBar{border-top-color:transparent}
+}
