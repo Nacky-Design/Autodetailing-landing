@@ -30,3 +30,8 @@
   .stage>.section{top:0;height:100dvh}
   .heading,.grid{transform:translateY(96px)}
 }
+
+/* Third Full-HD pass: vertically center the complete reviews composition without moving its background. */
+@media(min-width:1280px) and (min-height:900px){
+  .heading,.grid{transform:translateY(72px)}
+}
