@@ -4,3 +4,9 @@
 @media(max-width:1279px){.section{min-height:auto;padding:72px var(--container-pad);background-position:center}.veil{width:100%}.heading,.list,.quote{position:relative;inset:auto;width:auto}.heading{width:100%}.title{margin-top:32px;font-size:clamp(42px,7vw,64px)}.list{margin-top:48px}.question{font-size:22px}.quote{margin-top:48px;max-width:648px}.answerWrap p{font-size:19px}}
 @media(max-width:767px){.section{padding-top:56px}.kicker{font-size:13px}.kicker i{width:min(165px,40vw)}.title{font-size:clamp(36px,10vw,44px)}.list{margin-top:36px;gap:10px}.question{height:76px;padding:0 20px;font-size:18px}.answerWrap{padding-inline:20px}.itemOpen .answerWrap{padding-bottom:22px}.answerWrap p{font-size:16px}.quote{padding:26px 24px}.quote>b{width:36px;font-size:50px}.quote p{font-size:18px}}
 @media(prefers-reduced-motion:reduce){.item,.itemOpen,.question i::after,.answerWrap{transition:none}}
+
+/* Height-aware desktop and centered wide-screen canvas. */
+
+@media(min-width:1920px){.heading,.list{left:max(3.385vw,calc(50% - 895px))}.quote{right:max(3.28vw,calc(50% - 897px))}}
+@media(min-width:1280px) and (max-height:899px){.heading{top:clamp(20px,4vh,32px)}.title{margin-top:clamp(18px,3.5vh,26px);font-size:clamp(46px,7vh,64px)}.list{top:clamp(205px,29vh,248px);gap:8px}.question{height:clamp(58px,8.5vh,72px);font-size:clamp(20px,3vh,25px)}.quote{bottom:clamp(16px,3vh,28px);min-height:auto;padding:clamp(22px,3.5vh,30px) 34px}.quote p{font-size:clamp(18px,2.6vh,21px);line-height:1.4}}
+@media(min-width:1280px) and (max-height:719px){.stage{height:auto;margin-top:0}.stage>.section{position:relative;height:auto;min-height:720px}}
