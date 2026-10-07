@@ -483,3 +483,15 @@
   .cardBody { padding-bottom:clamp(1.5rem,2.8dvh,2rem); }
   .ctaRow { margin-top:clamp(1.25rem,2.2dvh,1.75rem); }
 }
+
+/* 1440×900 laptop pass: keep the kicker below the sticky header and fit the full card row. */
+@media (min-width:1280px) and (min-height:720px) and (max-height:960px){
+  .inner{padding-top:clamp(6.75rem,12dvh,7rem);padding-bottom:clamp(2rem,3.6dvh,2.5rem)}
+  .heading{gap:clamp(1.15rem,2.2dvh,1.5rem)}
+  .grid{margin-top:clamp(1.25rem,2.4dvh,1.65rem)}
+  .card{height:clamp(455px,53dvh,510px)}
+  .cardBody{padding-top:clamp(1.1rem,2dvh,1.4rem);padding-bottom:clamp(1.1rem,2dvh,1.4rem)}
+  .cardDescription{font-size:clamp(1rem,1.8dvh,1.2rem)}
+  .ctaRow{margin-top:clamp(.8rem,1.5dvh,1.1rem)}
+  .roundBtn,.roundBtn img{width:clamp(54px,6dvh,62px);height:clamp(54px,6dvh,62px)}
+}
