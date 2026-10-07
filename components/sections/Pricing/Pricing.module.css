@@ -29,3 +29,13 @@
   .inner { min-height:auto; padding-block:48px; }
   .panel { height:620px; }
 }
+
+/* Fluid desktop-height interpolation: 720 → 1080 without a visual jump. */
+@media (min-width:1280px) and (min-height:720px){
+ .inner{min-height:100%;padding-top:clamp(28px,5.93dvh,64px);padding-bottom:clamp(20px,2.6dvh,28px)}
+ .intro{padding-top:clamp(18px,7.69dvh,83px)}
+ .title{margin-top:clamp(22px,4.45dvh,48px);font-size:clamp(48px,6.67dvh,72px)}
+ .lead{margin-top:clamp(20px,3.89dvh,42px);font-size:clamp(18px,2.22dvh,24px)}
+ .panel{height:clamp(620px,81.11dvh,876px);padding-top:clamp(22px,3.24dvh,35px)}
+ .table{height:calc(100% - 166px)}
+}
