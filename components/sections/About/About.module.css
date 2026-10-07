@@ -93,3 +93,13 @@
 @media (min-width:1280px) and (min-height:900px){
   .copy,.cards{transform:translateY(-32px)}
 }
+
+/* Lock the desktop About composition to the usable viewport below the global header. */
+@media (min-width:1280px) and (min-height:720px){
+  .section{height:calc(100dvh - 96px);min-height:0;overflow:hidden}
+  .copy,.cards{transform:none}
+  .copy{top:50%;translate:0 -50%}
+  .cards{position:absolute;inset:50% 0 auto;height:min(86dvh,930px);translate:0 -50%}
+  .cardWide{top:0}
+  .cardMedium,.cardSmall{top:auto;bottom:0}
+}
