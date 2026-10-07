@@ -609,3 +609,8 @@
   .cta{margin-top:clamp(24px,4.45dvh,48px);min-height:clamp(62px,7.96dvh,86px)}
   .playerWrap{top:clamp(84px,17.78dvh,192px);width:min(53.906vw,calc((100dvh - 190px)*1.612),1035px)}
 }
+
+/* Match the configurator kicker to the Services desktop scale. */
+@media(min-width:1280px){
+  .kicker{font-size:1.25rem;line-height:1;letter-spacing:.2em}
+}
