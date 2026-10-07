@@ -34,3 +34,17 @@
   .stage>.section{top:0;height:100dvh}
   .heading,.list,.quote{transform:translateY(96px)}
 }
+
+/* Laptop-height pass: separate the question stack from a substantially tighter quote card. */
+@media(min-width:1280px) and (min-height:720px) and (max-height:960px){
+  .heading{top:22px}
+  .title{margin-top:18px;font-size:clamp(48px,6dvh,56px)}
+  .list{top:clamp(190px,22dvh,205px);width:min(58vw,835px);gap:7px}
+  .question{height:clamp(56px,6.8dvh,62px);padding-inline:28px;font-size:clamp(19px,2.35dvh,22px)}
+  .quote{top:clamp(330px,38dvh,350px);right:3.28vw;width:min(36vw,510px);padding:18px 24px;gap:14px}
+  .quote>b{width:38px;font-size:48px}
+  .quote p{font-size:clamp(16px,1.9dvh,18px);line-height:1.32}
+  .quote i{margin:10px 0}
+  .quote strong{font-size:17px}
+  .quote span{font-size:14px}
+}
