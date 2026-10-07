@@ -473,3 +473,13 @@
     transform: translateY(0);
   }
 }
+
+/* Full-HD desktop fit: keep the complete heading and card row inside the area below the sticky header. */
+@media (min-width:1280px) and (min-height:900px) {
+  .inner { padding-top:clamp(7rem,11.5dvh,7.75rem); padding-bottom:clamp(3rem,5dvh,3.5rem); }
+  .heading { gap:clamp(1.5rem,2.8dvh,2rem); }
+  .grid { margin-top:clamp(1.75rem,3.1dvh,2.25rem); }
+  .card { aspect-ratio:auto; height:clamp(560px,57.5dvh,621px); }
+  .cardBody { padding-bottom:clamp(1.5rem,2.8dvh,2rem); }
+  .ctaRow { margin-top:clamp(1.25rem,2.2dvh,1.75rem); }
+}
