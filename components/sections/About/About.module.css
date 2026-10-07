@@ -103,3 +103,12 @@
   .cardWide{top:0}
   .cardMedium,.cardSmall{top:auto;bottom:0}
 }
+
+/* Laptop-height pass: center the complete About composition in the usable area below the header. */
+@media (min-width:1280px) and (min-height:720px) and (max-height:960px){
+  .section{height:calc(100dvh - 96px)}
+  .copy{top:50%;translate:0 -50%}
+  .cards{inset:50% 0 auto;height:calc(100% - 40px);max-height:760px;translate:0 -50%}
+  .cardWide{height:45%}
+  .cardMedium,.cardSmall{height:calc(55% - 20px)}
+}
