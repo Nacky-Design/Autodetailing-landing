@@ -52,6 +52,7 @@ export function Configurator() {
               src={CARKVIZ_URL}
               title="Демонстрация Car Quiz"
               loading="lazy"
+              scrolling="no"
               tabIndex={-1}
             />
             <span className={styles.scrim} aria-hidden="true" />
