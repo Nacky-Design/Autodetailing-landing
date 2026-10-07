@@ -28,3 +28,9 @@
   .quote p{line-height:1.36}
   .quote i{margin:clamp(12px,1.7dvh,18px) 0}
 }
+
+/* Sticky background fills the whole viewport under the header; keep the centered content offset below it. */
+@media(min-width:1280px) and (min-height:720px){
+  .stage>.section{top:0;height:100dvh}
+  .heading,.list,.quote{transform:translateY(96px)}
+}
