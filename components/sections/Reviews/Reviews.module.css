@@ -12,3 +12,15 @@
  .card,.rating{height:clamp(446px,57.22dvh,618px)}.photo{height:clamp(144px,19.26dvh,208px)}.review{height:clamp(184px,24.81dvh,268px)}
  .review p{font-size:clamp(18px,2.22dvh,24px)}.cta{height:clamp(60px,7.96dvh,86px);margin-top:clamp(14px,2.5dvh,27px)}
 }
+
+/* Keep the reviews CTA visible without moving the otherwise balanced composition. */
+@media(min-width:1280px) and (min-height:720px){
+  .stage>.section{top:96px;height:calc(100dvh - 96px)}
+  .heading{top:clamp(24px,4.1dvh,44px)}
+  .grid{top:clamp(205px,25dvh,270px)}
+  .card,.rating{height:clamp(430px,54dvh,583px)}
+  .photo{height:clamp(140px,18dvh,194px)}
+  .review{height:clamp(176px,22.5dvh,243px)}
+  .map{height:clamp(175px,20.5dvh,221px)}
+  .cta{height:clamp(58px,7dvh,76px);margin-top:clamp(12px,1.8dvh,19px)}
+}
