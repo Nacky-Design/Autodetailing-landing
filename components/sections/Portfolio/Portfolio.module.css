@@ -22,3 +22,10 @@
  .stage>.section .carousel{margin-top:clamp(14px,2.22dvh,24px)}
  .stage>.section .card{height:clamp(380px,48.15dvh,520px);flex-basis:clamp(340px,49.26dvh,532px)}
 }
+
+/* Center the sticky portfolio scene in the viewport area that remains below the global header. */
+@media(min-width:1280px) and (min-height:720px){
+  .stage>.section{top:96px;height:calc(100dvh - 96px)}
+  .stage>.section .header{padding-top:clamp(18px,2.6dvh,28px)}
+  .stage>.section .pagination{bottom:clamp(14px,2dvh,22px)}
+}
