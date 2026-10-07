@@ -58,3 +58,10 @@
   .map{height:clamp(165px,19dvh,178px)}
   .cta{height:clamp(54px,6.4dvh,58px);margin-top:10px;font-size:18px}
 }
+
+/* Second laptop QA: center the whole Reviews composition in the usable viewport. */
+@media(min-width:1280px) and (min-height:720px) and (max-height:960px){
+  .heading,.grid{transform:none}
+  .heading{top:clamp(110px,13dvh,120px)}
+  .grid{top:50%;translate:0 -35%}
+}
