@@ -78,3 +78,11 @@
   .social{top:30px}
   .legal{top:96px;padding-top:20px}
 }
+
+/* Final Full-HD contact alignment: lift the info stack and give its text enough width for the address. */
+@media(min-width:1280px) and (min-height:900px){
+  .info{top:clamp(360px,35dvh,378px);width:430px}
+  .infoItem{gap:24px;padding-left:24px}
+  .infoItem div{min-width:0;flex:1}
+  .infoItem strong,.infoItem span{white-space:nowrap}
+}
