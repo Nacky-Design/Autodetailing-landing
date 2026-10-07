@@ -48,3 +48,8 @@
   .quote strong{font-size:17px}
   .quote span{font-size:14px}
 }
+
+/* Second laptop QA: narrow the quote to the sticky-header CTA guide. */
+@media(min-width:1280px) and (min-height:720px) and (max-height:960px){
+  .quote{left:calc(100% - 365px);right:3.28vw;width:auto}
+}
