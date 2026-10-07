@@ -47,3 +47,9 @@
   .intro{padding-top:0}
   .panel{height:min(81.11dvh,calc(100dvh - 156px))}
 }
+
+/* Sticky background fills the whole viewport under the header; content remains in the usable area. */
+@media (min-width:1280px) and (min-height:720px){
+  .stage>.section{top:0;height:100dvh}
+  .inner{height:calc(100% - 96px);margin-top:96px}
+}
