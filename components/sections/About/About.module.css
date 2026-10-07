@@ -112,3 +112,9 @@
   .cardWide{height:45%}
   .cardMedium,.cardSmall{height:calc(55% - 20px)}
 }
+
+/* Final 1440×900 tune: restore the approved optical center for About. */
+@media(min-width:1280px) and (min-height:720px) and (max-height:960px){
+  .copy{top:50%;translate:0 -50%}
+  .cards{inset:50% 0 auto;height:min(calc(100% - 64px),736px);translate:0 -50%}
+}
