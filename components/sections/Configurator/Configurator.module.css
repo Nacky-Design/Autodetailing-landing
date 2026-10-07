@@ -599,3 +599,13 @@
 @media (min-width:1920px){.copy{left:max(71px,calc(50% - 889px))}.playerWrap{left:calc(50% - 139px)}}
 @media (min-width:1280px) and (max-height:899px){.section,.inner{min-height:100vh}.copy{top:clamp(76px,13vh,124px)}.title{margin-top:clamp(24px,4.5vh,40px);font-size:clamp(48px,7vh,64px)}.description{margin-top:clamp(16px,3vh,24px);font-size:clamp(18px,2.7vh,22px)}.cta{margin-top:clamp(24px,4vh,36px);min-height:clamp(62px,8vh,76px)}.playerWrap{top:clamp(84px,14vh,132px);width:min(53.906vw,calc((100vh - 190px)*1.612))}.controls{height:clamp(54px,7vh,68px)}}
 @media (min-width:1280px) and (max-height:719px){.section,.inner{min-height:720px}}
+
+/* Fluid desktop-height interpolation: 720 → 1080 without a visual jump. */
+@media (min-width:1280px) and (min-height:720px) {
+  .section,.inner{min-height:100dvh}
+  .copy{top:clamp(76px,16.3dvh,176px)}
+  .title{margin-top:clamp(24px,4.45dvh,48px);font-size:clamp(48px,6.67dvh,72px)}
+  .description{margin-top:clamp(16px,2.78dvh,30px);font-size:clamp(18px,2.22dvh,24px)}
+  .cta{margin-top:clamp(24px,4.45dvh,48px);min-height:clamp(62px,7.96dvh,86px)}
+  .playerWrap{top:clamp(84px,17.78dvh,192px);width:min(53.906vw,calc((100dvh - 190px)*1.612),1035px)}
+}
