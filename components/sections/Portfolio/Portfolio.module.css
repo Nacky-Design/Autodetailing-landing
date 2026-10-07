@@ -29,3 +29,12 @@
   .stage>.section .header{padding-top:clamp(18px,2.6dvh,28px)}
   .stage>.section .pagination{bottom:clamp(14px,2dvh,22px)}
 }
+
+/* Full-HD visual QA: align filters to the third-card grid line and bring pagination back to the carousel. */
+@media(min-width:1280px) and (min-height:900px){
+  .filters{margin-right:30.886vw}
+  .stage>.section .pagination{bottom:clamp(48px,5.2dvh,56px)}
+}
+@media(min-width:1920px) and (min-height:900px){
+  .filters{margin-right:593px}
+}
