@@ -49,3 +49,8 @@
 @media(min-width:1920px) and (min-height:900px){
   .filters{left:calc(50% - 854px + 1116px)}
 }
+
+/* Laptop-height pass: keep pagination visually attached to the carousel. */
+@media(min-width:1280px) and (min-height:720px) and (max-height:960px){
+  .stage>.section .pagination{bottom:clamp(52px,6.4dvh,64px)}
+}
