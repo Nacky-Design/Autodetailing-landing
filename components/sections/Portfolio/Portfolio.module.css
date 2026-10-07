@@ -13,3 +13,12 @@
 @media(min-width:1920px){.header{padding-left:max(5.47vw,calc(50% - 855px));padding-right:max(5.47vw,calc(50% - 855px))}.track{transform:translateX(calc(max(5.52vw,calc(50% - 854px)) + var(--drag-x,0px)))}}
 @media(min-width:1280px) and (max-height:899px){.stage>.section{top:72px;height:calc(100vh - 88px)}.stage>.section .header{padding-top:clamp(14px,2.5vh,22px)}.stage>.section .title{margin-top:clamp(16px,3vh,26px);font-size:clamp(44px,6.5vh,60px)}.stage>.section .carousel{margin-top:clamp(14px,2.5vh,22px)}.stage>.section .card{height:clamp(380px,58vh,500px);flex-basis:clamp(340px,46vh,460px)}.stage>.section .pagination{bottom:10px}}
 @media(min-width:1280px) and (max-height:719px){.stage{height:auto}.stage>.section{position:relative;top:auto;height:auto;min-height:720px}}
+
+/* Fluid desktop-height interpolation: 720 → 1080 without a visual jump. */
+@media(min-width:1280px) and (min-height:720px){
+ .stage>.section{top:clamp(72px,8.89dvh,96px);height:calc(100dvh - clamp(88px,11.85dvh,128px))}
+ .stage>.section .header{padding-top:clamp(14px,2.22dvh,24px)}
+ .stage>.section .title{margin-top:clamp(16px,2.78dvh,30px);font-size:clamp(44px,6.67dvh,72px)}
+ .stage>.section .carousel{margin-top:clamp(14px,2.22dvh,24px)}
+ .stage>.section .card{height:clamp(380px,48.15dvh,520px);flex-basis:clamp(340px,49.26dvh,532px)}
+}
