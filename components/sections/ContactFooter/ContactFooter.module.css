@@ -55,3 +55,26 @@
 .footer nav{gap:14px 12px}
 .footer nav a{font-size:14px}
 }
+
+/* Full-HD desktop recomposition: reserve the sticky-header area, compact the footer and tighten the contact rhythm. */
+@media(min-width:1280px){
+  .section{height:100dvh;min-height:720px}
+  .bg{height:100%}
+  .leftShade,.tone{height:calc(100% - clamp(164px,16.7dvh,180px))}
+  .heading{top:clamp(112px,11.5dvh,124px)}
+  .heading h2{margin-top:clamp(24px,2.8dvh,30px);font-size:clamp(62px,6.3dvh,68px);line-height:1.04}
+  .heading p{margin-top:clamp(18px,2.1dvh,23px);font-size:clamp(24px,2.5dvh,27px);line-height:1.35}
+  .phone{top:clamp(455px,44dvh,475px);gap:6px}
+  .phone strong{font-size:clamp(48px,5.1dvh,55px);line-height:1.08}
+  .phone span{font-size:clamp(20px,2.05dvh,22px);line-height:1.25}
+  .cta{top:clamp(590px,57dvh,616px);height:clamp(76px,8dvh,86px)}
+  .info{top:clamp(390px,38dvh,410px);height:clamp(330px,34dvh,367px)}
+  .infoItem{height:clamp(96px,10dvh,108px)}
+  .infoItem + .infoItem{padding-top:clamp(22px,2.6dvh,28px)}
+  .infoItem:not(:first-child){margin-top:clamp(22px,2.6dvh,28px)}
+  .footer{top:auto;bottom:0;height:clamp(164px,16.7dvh,180px)}
+  .brand{top:26px}
+  .footer nav{top:42px}
+  .social{top:30px}
+  .legal{top:96px;padding-top:20px}
+}
