@@ -7,3 +7,9 @@
 @media(prefers-reduced-motion:reduce){.track,.photo,.frame,.roundArrow{transition:none}}
 
 @media(min-width:1280px){.stage{height:220vh}.stage>.section{position:sticky;top:96px;height:calc(100vh - 128px);min-height:0;overflow:hidden}.stage>.section .header{padding-top:24px}.stage>.section .title{margin-top:30px}.stage>.section .carousel{margin-top:24px}.stage>.section .card{height:520px}.stage>.section .pagination{bottom:18px}}
+
+/* Height-aware desktop and centered wide-screen canvas. */
+
+@media(min-width:1920px){.header{padding-left:max(5.47vw,calc(50% - 855px));padding-right:max(5.47vw,calc(50% - 855px))}.track{transform:translateX(calc(max(5.52vw,calc(50% - 854px)) + var(--drag-x,0px)))}}
+@media(min-width:1280px) and (max-height:899px){.stage>.section{top:72px;height:calc(100vh - 88px)}.stage>.section .header{padding-top:clamp(14px,2.5vh,22px)}.stage>.section .title{margin-top:clamp(16px,3vh,26px);font-size:clamp(44px,6.5vh,60px)}.stage>.section .carousel{margin-top:clamp(14px,2.5vh,22px)}.stage>.section .card{height:clamp(380px,58vh,500px);flex-basis:clamp(340px,46vh,460px)}.stage>.section .pagination{bottom:10px}}
+@media(min-width:1280px) and (max-height:719px){.stage{height:auto}.stage>.section{position:relative;top:auto;height:auto;min-height:720px}}
