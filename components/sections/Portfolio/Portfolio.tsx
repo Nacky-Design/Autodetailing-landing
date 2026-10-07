@@ -70,7 +70,6 @@ export function Portfolio() {
               <img className={styles.photo} src={work.image} alt="" />
               <span className={styles.gradient} aria-hidden="true" />
               <div className={styles.cardCopy}><h3>{work.title}</h3><p>{work.type}</p></div>
-              <span className={styles.roundArrow} aria-hidden="true">↗</span>
               <span className={styles.frame} aria-hidden="true" />
             </article>
           ))}
