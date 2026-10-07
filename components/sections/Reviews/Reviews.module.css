@@ -24,3 +24,9 @@
   .map{height:clamp(175px,20.5dvh,221px)}
   .cta{height:clamp(58px,7dvh,76px);margin-top:clamp(12px,1.8dvh,19px)}
 }
+
+/* Sticky background fills the whole viewport under the header; keep review content in the usable area. */
+@media(min-width:1280px) and (min-height:720px){
+  .stage>.section{top:0;height:100dvh}
+  .heading,.grid{transform:translateY(96px)}
+}
