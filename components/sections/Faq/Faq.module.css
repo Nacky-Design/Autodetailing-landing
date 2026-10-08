@@ -63,10 +63,14 @@
   .section[data-revealed="true"]:not([data-motion="complete"]) .heading {
     animation:faq-heading-in 560ms cubic-bezier(.25,.1,.25,1) both;
   }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .heading > * {\n    animation:faq-heading-content-in 560ms cubic-bezier(.25,.1,.25,1) both;\n  }\n  .section[data-revealed="true"]:not([data-motion="complete"]) .quote {
+  .section[data-revealed="true"]:not([data-motion="complete"]) .heading > * {
+    animation:faq-heading-content-in 560ms cubic-bezier(.25,.1,.25,1) both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .quote {
     animation:faq-quote-in 650ms ease-out 220ms both;
   }
-  .section[data-motion="complete"] .heading > * { transform:none;animation:none; }\n  .section[data-motion="complete"] .heading,
+  .section[data-motion="complete"] .heading > * { transform:none;animation:none; }
+  .section[data-motion="complete"] .heading,
   .section[data-motion="complete"] .quote { opacity:1;animation:none; }
 }
 @keyframes faq-heading-in { from {opacity:0} to {opacity:1} }
