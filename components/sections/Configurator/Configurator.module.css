@@ -623,3 +623,23 @@
   from { opacity:0; }
   to { opacity:1; }
 }
+
+
+/* Desktop chessboard composition: demo left, explanation and CTA right.
+   Preserve both internal compositions and their entrance animations. */
+@media (min-width:1280px) {
+  .playerWrap { left:max(47px,calc((100vw - 1920px)*.025 + 64px)); }
+  .copy { left:calc(50% + clamp(74px,5.2vw,100px)); }
+  .localVeil {
+    left:auto;right:0;width:48%;
+    background:linear-gradient(270deg,rgba(3,16,20,.97) 0%,rgba(3,16,20,.86) 68%,rgba(3,16,20,0) 100%);
+  }
+}
+@media (min-width:1280px) and (max-width:1919px) {
+  .playerWrap {left:clamp(47px,3.333vw,64px)}
+  .copy {left:calc(50% + clamp(40px,5.2vw,100px));width:clamp(470px,36.927vw,709px)}
+}
+@media (min-width:1920px) {
+  .playerWrap {left:max(64px,calc(50% - 896px))}
+  .copy {left:calc(50% + 145px)}
+}
