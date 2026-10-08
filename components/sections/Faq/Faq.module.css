@@ -57,23 +57,14 @@
 /* FAQ: restrained editorial entry. Animate only the heading and quote,
    never the accordion stack or its interactive open/close mechanics. */
 @media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
-  .section[data-revealed="false"] .heading { opacity:0; }
-  .section[data-revealed="false"] .heading > * { transform:translateY(10px); }
-  .section[data-revealed="false"] .quote { opacity:0; }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .heading {
-    animation:faq-heading-in 560ms cubic-bezier(.25,.1,.25,1) both;
-  }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .heading > * {
-    animation:faq-heading-content-in 560ms cubic-bezier(.25,.1,.25,1) both;
-  }
+
   .section[data-revealed="true"]:not([data-motion="complete"]) .quote {
     animation:faq-quote-in 650ms ease-out 220ms both;
   }
-  .section[data-motion="complete"] .heading > * { transform:none;animation:none; }
-  .section[data-motion="complete"] .heading,
+
   .section[data-motion="complete"] .quote { opacity:1;animation:none; }
 }
-@keyframes faq-heading-in { from {opacity:0} to {opacity:1} }
+
 @keyframes faq-quote-in { from {opacity:0} to {opacity:1} }
 
-@keyframes faq-heading-content-in { from {transform:translateY(10px)} to {transform:translateY(0)} }
+
