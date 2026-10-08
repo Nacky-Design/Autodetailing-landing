@@ -1314,10 +1314,8 @@ transform:scaleX(1.04);
   .actions { animation:hero-cta-in 850ms cubic-bezier(.2,.7,.2,1) 1850ms both; }
 }
 @keyframes hero-drive-in {
-  0% { opacity:0; transform:translateX(-22%) scale(.99); }
-  20% { opacity:1; }
-  72% { opacity:1; transform:translateX(-3%) scale(1); }
-  100% { opacity:1; transform:translateX(0) scale(1); }
+  from { opacity:0; transform:translateX(-22%) scale(.99); }
+  to { opacity:1; transform:translateX(0) scale(1); }
 }
 @keyframes hero-cta-in {
   from { opacity:0; transform:translateY(14px); }
