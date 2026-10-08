@@ -651,6 +651,7 @@
     left:auto;
     right:clamp(47px,3.333vw,64px);
     width:min(37vw,709px);
+    max-width:calc(100% - 2 * clamp(47px,3.333vw,64px));
   }
 }
 @media (min-width:1920px) {
