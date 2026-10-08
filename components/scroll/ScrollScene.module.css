@@ -63,3 +63,12 @@
     transform: none;
   }
 }
+
+/* Desktop choreography: preserve layout and let every scene animate independently. */
+@media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
+  .content :global(section) > * { transition:none; }
+  .content :global(section:not([data-scene-visible="true"])) > *,
+  .content :global(section[data-scene-visible="true"]) > * { opacity:1;transform:none; }
+  .studioTone { transition:background-color 900ms ease; }
+  .scene:has(:global(#services[data-scene-visible="true"]:hover)) .studioTone { background:rgba(2,8,11,.34); }
+}
