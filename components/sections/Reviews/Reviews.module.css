@@ -65,3 +65,36 @@
   .heading{top:clamp(110px,13dvh,120px)}
   .grid{top:50%;translate:0 -35%}
 }
+
+/* Reviews: unified editorial heading; ratings get a short warm emphasis.
+   Existing layout transforms and card hover interactions remain untouched. */
+@media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
+  .section[data-revealed="false"] .heading { opacity:0; }
+  .section[data-revealed="false"] .heading > * { translate:0 10px; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .heading {
+    animation:reviews-heading-opacity 560ms cubic-bezier(.25,.1,.25,1) both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .heading > * {
+    animation:reviews-heading-rise 560ms cubic-bezier(.25,.1,.25,1) both;
+  }
+  .section[data-revealed="false"] .review b,
+  .section[data-revealed="false"] .score b,
+  .section[data-revealed="false"] .score > strong { filter:brightness(.7); }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .review b,
+  .section[data-revealed="true"]:not([data-motion="complete"]) .score b,
+  .section[data-revealed="true"]:not([data-motion="complete"]) .score > strong {
+    animation:reviews-gold-awake 780ms ease-out both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .card:nth-child(1) .review b { animation-delay:200ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .card:nth-child(2) .review b { animation-delay:380ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .score > strong { animation-delay:520ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .score b { animation-delay:620ms; }
+  .section[data-motion="complete"] .heading { opacity:1;animation:none; }
+  .section[data-motion="complete"] .heading > * { translate:none;animation:none; }
+  .section[data-motion="complete"] .review b,
+  .section[data-motion="complete"] .score b,
+  .section[data-motion="complete"] .score > strong { filter:none;animation:none; }
+}
+@keyframes reviews-heading-opacity { from {opacity:0} to {opacity:1} }
+@keyframes reviews-heading-rise { from {translate:0 10px} to {translate:0 0} }
+@keyframes reviews-gold-awake { from {filter:brightness(.7)} to {filter:brightness(1)} }
