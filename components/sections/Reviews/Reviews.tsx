@@ -29,7 +29,7 @@ export function Reviews(){
    return () => observer.disconnect();
  }, []);
  return <div className={styles.stage}><section ref={sectionRef} data-revealed="false" className={styles.section} aria-labelledby="reviews-title" style={{backgroundImage:`linear-gradient(90deg,rgba(2,7,9,.85),rgba(2,7,9,.62) 55%,rgba(2,7,9,.29)),url("${bg}")`}}>
-  <header className={styles.heading}><div className={styles.kicker}>ОТЗЫВЫ КЛИЕНТОВ<i/></div><h2 id="reviews-title">Что говорят о нас <span>клиенты</span></h2></header>
+  <header className={styles.heading} data-scene-heading><div className={styles.kicker}>ОТЗЫВЫ КЛИЕНТОВ<i/></div><h2 id="reviews-title">Что говорят о нас <span>клиенты</span></h2></header>
   <div className={styles.grid}>
    {reviews.map(r=><article className={styles.card} key={r.name}><img className={styles.photo} src={r.photo} alt=""/><div className={styles.review}><b>★★★★★</b><p>{r.text}</p></div><footer><img src={r.avatar} alt=""/><div><strong>{r.name}</strong><span>{r.date}</span></div><i>•••</i></footer></article>)}
    <article className={styles.rating}><h3>⌖ <span>Яндекс Карты</span><i>↗</i></h3><div className={styles.score}><strong>4,9</strong><div><b>★★★★★</b><span>128 отзывов</span></div></div><div className={styles.map}><img src={map} alt=""/><div><strong>ATELIER 01</strong><span>Детейлинг и стиль</span></div></div><a href="#" className={styles.cta}>Смотреть все отзывы <span>→</span></a></article>
