@@ -127,12 +127,6 @@
 /* Contacts finale: all contact details, background and footer remain visible.
    Shared heading rise; sequential warm highlights, not loading fades. */
 @media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
-  .section[data-revealed="false"] .heading > .kicker,
-  .section[data-revealed="false"] .heading > h2 { translate:0 10px; }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .heading > .kicker,
-  .section[data-revealed="true"]:not([data-motion="complete"]) .heading > h2 {
-    animation:contacts-heading-rise 560ms cubic-bezier(.25,.1,.25,1) both;
-  }
   .section[data-revealed="false"] .phone strong,
   .section[data-revealed="false"] .infoItem img { filter:brightness(.7); }
   .section[data-revealed="true"]:not([data-motion="complete"]) .phone strong {
@@ -144,20 +138,12 @@
   .section[data-revealed="true"]:not([data-motion="complete"]) .infoItem:nth-child(1) img { animation-delay:480ms; }
   .section[data-revealed="true"]:not([data-motion="complete"]) .infoItem:nth-child(2) img { animation-delay:620ms; }
   .section[data-revealed="true"]:not([data-motion="complete"]) .infoItem:nth-child(3) img { animation-delay:760ms; }
-  .section[data-revealed="false"] .cta { box-shadow:0 0 0 rgba(217,168,95,0); }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .cta {
-    animation:contacts-cta-glow 1100ms ease-out 650ms both;
-  }
-  .section[data-motion="complete"] .heading > .kicker,
-  .section[data-motion="complete"] .heading > h2 { translate:none;animation:none; }
+
+
   .section[data-motion="complete"] .phone strong,
   .section[data-motion="complete"] .infoItem img { filter:none;animation:none; }
-  .section[data-motion="complete"] .cta { animation:none; }
+
 }
-@keyframes contacts-heading-rise { from {translate:0 10px} to {translate:0 0} }
+
 @keyframes contacts-accent-awake { from {filter:brightness(.7)} to {filter:brightness(1)} }
-@keyframes contacts-cta-glow {
-  0% {box-shadow:0 0 0 rgba(217,168,95,0)}
-  55% {box-shadow:0 0 28px rgba(255,215,149,.24)}
-  100% {box-shadow:0 8px 14px rgba(217,168,95,.13)}
-}
+
