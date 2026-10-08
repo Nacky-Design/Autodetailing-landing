@@ -6,14 +6,23 @@ import { Container } from "@/components/layout/Container";
 import { SERVICES } from "@/lib/data/services";
 import styles from "./Services.module.css";
 
+const revealedSections = new Set<string>();
+
 export function Services() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
     if (!section || !window.matchMedia("(min-width: 1280px) and (prefers-reduced-motion: no-preference)").matches) return;
+    const sceneKey = "services";
+    if (revealedSections.has(sceneKey)) {
+      section.dataset.revealed = "true";
+      section.dataset.motion = "complete";
+      return;
+    }
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
+        revealedSections.add(sceneKey);
         section.dataset.revealed = "true";
         observer.disconnect();
       }
