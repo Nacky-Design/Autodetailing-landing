@@ -24,7 +24,7 @@ export function ContactFooter(){
  }, []);
  return <section ref={sectionRef} data-revealed="false" id="contacts" className={styles.section}>
 <img className={styles.bg} src={bg} alt=""/><div className={styles.leftShade}/><div className={styles.tone}/>
-<div className={styles.heading}><div className={styles.kicker}>КОНТАКТЫ<i/></div><h2>Будем рады<br/><span>вашему обращению</span></h2><p>Проконсультируем, подберём решение<br/>и запишем на удобное время.</p></div>
+<div className={styles.heading} data-scene-heading><div className={styles.kicker}>КОНТАКТЫ<i/></div><h2>Будем рады<br/><span>вашему обращению</span></h2><p>Проконсультируем, подберём решение<br/>и запишем на удобное время.</p></div>
 <div className={styles.phone}><strong>+7 987 654-32-10</strong><span>Ежедневно с 10:00 до 21:00</span></div>
 <a className={styles.cta} href="#configurator">Примерить на своём авто</a>
 <div className={styles.info}>
