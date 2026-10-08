@@ -57,6 +57,7 @@ export function Configurator() {
 
           <Button
             className={styles.cta}
+            data-cta-system
             href={CARKVIZ_URL}
             target="_blank"
             rel="noopener noreferrer"
