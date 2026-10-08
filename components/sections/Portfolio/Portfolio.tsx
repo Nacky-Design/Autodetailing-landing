@@ -1,6 +1,8 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
+const completedScenes = new Set<string>();
 import styles from "./Portfolio.module.css";
 
 const works = [
@@ -12,6 +14,25 @@ const works = [
 const filters = ["Все работы", "Оклейка", "Защитная плёнка", "Антихром"];
 
 export function Portfolio() {
+  const stageRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage || !window.matchMedia("(min-width: 1280px) and (prefers-reduced-motion: no-preference)").matches) return;
+    if (completedScenes.has("portfolio")) {
+      stage.dataset.revealed = "true";
+      stage.dataset.motion = "complete";
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        completedScenes.add("portfolio");
+        stage.dataset.revealed = "true";
+        observer.disconnect();
+      }
+    }, { rootMargin: "0px 0px -35% 0px" });
+    observer.observe(stage);
+    return () => observer.disconnect();
+  }, []);
   const [filter, setFilter] = useState("Все работы");
   const [offset, setOffset] = useState(0);
   const touchStartX = useRef<number | null>(null);
@@ -50,7 +71,7 @@ export function Portfolio() {
   };
 
   return (
-    <div className={styles.stage}>
+    <div ref={stageRef} data-revealed="false" className={styles.stage}>
     <section id="portfolio" className={styles.section} aria-labelledby="portfolio-title">
       <span className={styles.sceneTone} aria-hidden="true" />
       <div className={styles.header}>
