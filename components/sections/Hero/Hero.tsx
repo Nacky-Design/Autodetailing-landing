@@ -80,6 +80,7 @@ export function Hero() {
               variant="primary"
               size="lg"
               className={styles.primaryCta}
+              data-cta-system
               leadingIcon={
                 <Image
                   src="/icons/box-dark.svg"
