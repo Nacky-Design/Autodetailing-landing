@@ -73,7 +73,8 @@ export function Portfolio() {
         reveal();
       }
     }, { rootMargin: "0px 0px -35% 0px" });
-    observer.observe(stage);
+    const section = stage.querySelector<HTMLElement>("#portfolio");
+    if (section) observer.observe(section);
     return () => {
       cancelled = true;
       observer.disconnect();
