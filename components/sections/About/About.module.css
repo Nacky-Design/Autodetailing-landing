@@ -118,3 +118,42 @@
   .copy{top:50%;translate:0 -50%}
   .cards{inset:50% 0 auto;height:min(calc(100% - 64px),736px);translate:0 -50%}
 }
+
+/* About: focus moves from the hero photograph to the two supporting frames.
+   All approved card positions, sizes and text geometry remain fixed. */
+@media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
+  .section[data-revealed="false"] .card { opacity:0; }
+  .section[data-revealed="false"] .cardImage { transform:scale(1.045); }
+  .section[data-revealed="false"] .cardCaption { opacity:0; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .card {
+    animation:about-frame-awake 1000ms cubic-bezier(.22,1,.36,1) both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardImage {
+    animation:about-photo-settle 1500ms cubic-bezier(.22,1,.36,1) both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardCaption {
+    animation:about-caption-awake 650ms ease-out both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardMedium,
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardMedium .cardImage { animation-delay:420ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardSmall,
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardSmall .cardImage { animation-delay:760ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardWide .cardCaption { animation-delay:500ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardMedium .cardCaption { animation-delay:920ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardSmall .cardCaption { animation-delay:1260ms; }
+  .section[data-motion="complete"] .card,
+  .section[data-motion="complete"] .cardCaption { opacity:1; animation:none; }
+  .section[data-motion="complete"] .cardImage { transform:none; animation:none; }
+}
+@keyframes about-frame-awake {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+@keyframes about-photo-settle {
+  from { transform:scale(1.045); }
+  to { transform:scale(1); }
+}
+@keyframes about-caption-awake {
+  from { opacity:0; }
+  to { opacity:1; }
+}
