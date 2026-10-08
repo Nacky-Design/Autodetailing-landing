@@ -1,12 +1,28 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { SERVICES } from "@/lib/data/services";
 import styles from "./Services.module.css";
 
 export function Services() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || !window.matchMedia("(min-width: 1280px) and (prefers-reduced-motion: no-preference)").matches) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      section.dataset.revealed = entry.isIntersecting ? "true" : "false";
+    }, { threshold: 0, rootMargin: "0px 0px -12% 0px" });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="services"
+      ref={sectionRef}
       className={styles.services}
       aria-labelledby="services-title"
     >
