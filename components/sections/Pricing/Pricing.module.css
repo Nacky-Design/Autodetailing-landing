@@ -53,3 +53,12 @@
   .stage>.section{top:0;height:100dvh}
   .inner{height:calc(100% - 96px);margin-top:96px}
 }
+
+/* Pricing: the existing sticky handoff is the scene transition.
+   Keep the panel, tabs and all prices visible and immediately interactive. */
+@media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
+  .section .panel,
+  .section .panel .row { opacity:1; transform:none; animation:none; }
+
+}
+

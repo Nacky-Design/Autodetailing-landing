@@ -65,3 +65,65 @@
   .heading{top:clamp(110px,13dvh,120px)}
   .grid{top:50%;translate:0 -35%}
 }
+
+/* Reviews: the cards are present from the first frame.
+   A sequential light pass and internal camera settle create the scene.
+   Never animate the grid, card opacity or card transform (hover owns it). */
+@media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
+  /* Keep the existing breakpoint-specific heading transform intact. */
+
+
+  .section .grid > .card,
+  .section .grid > .rating { opacity:1;scale:1; }
+  .section .grid > .card,
+  .section .grid > .rating { position:relative;isolation:isolate; }
+  .section .grid > .card::after,
+  .section .grid > .rating::after {
+    content:"";position:absolute;z-index:4;inset:0;pointer-events:none;
+    border-radius:inherit;
+    background:linear-gradient(105deg,transparent 24%,rgba(255,215,149,.02) 39%,rgba(255,215,149,.19) 50%,rgba(255,215,149,.02) 61%,transparent 76%);
+    transform:translateX(-120%);opacity:0;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .grid > .card::after,
+  .section[data-revealed="true"]:not([data-motion="complete"]) .grid > .rating::after {
+    animation:reviews-light-pass 1100ms ease-in-out both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .grid > :nth-child(1)::after { animation-delay:120ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .grid > :nth-child(2)::after { animation-delay:360ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .grid > :nth-child(3)::after { animation-delay:600ms; }
+
+  .section[data-revealed="false"] .card .photo { scale:1.055; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .card .photo {
+    animation:reviews-camera-settle 1200ms cubic-bezier(.22,1,.36,1) both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .card:nth-child(1) .photo { animation-delay:120ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .card:nth-child(2) .photo { animation-delay:360ms; }
+  .section[data-motion="complete"] .card .photo { scale:1;animation:none; }
+  .section[data-motion="complete"] .grid > .card::after,
+  .section[data-motion="complete"] .grid > .rating::after { opacity:0;animation:none; }
+
+  .section[data-revealed="false"] .review b,
+  .section[data-revealed="false"] .score b,
+  .section[data-revealed="false"] .score > strong { filter:brightness(.7); }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .review b,
+  .section[data-revealed="true"]:not([data-motion="complete"]) .score b,
+  .section[data-revealed="true"]:not([data-motion="complete"]) .score > strong {
+    animation:reviews-gold-awake 780ms ease-out both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .card:nth-child(1) .review b { animation-delay:680ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .card:nth-child(2) .review b { animation-delay:920ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .score > strong { animation-delay:1120ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .score b { animation-delay:1200ms; }
+  .section[data-motion="complete"] .review b,
+  .section[data-motion="complete"] .score b,
+  .section[data-motion="complete"] .score > strong { filter:none;animation:none; }
+}
+
+@keyframes reviews-camera-settle { from {scale:1.055} to {scale:1} }
+@keyframes reviews-gold-awake { from {filter:brightness(.7)} to {filter:brightness(1)} }
+@keyframes reviews-light-pass {
+  0% {opacity:0;transform:translateX(-120%)}
+  20% {opacity:1}
+  80% {opacity:1}
+  100% {opacity:0;transform:translateX(120%)}
+}

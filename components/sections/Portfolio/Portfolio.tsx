@@ -1,7 +1,10 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
 import styles from "./Portfolio.module.css";
+
+const completedScenes = new Set<string>();
 
 const works = [
   { title: "Porsche Cayenne", type: "Виниловая оклейка", filter: "Оклейка", image: "https://www.figma.com/api/mcp/asset/aa1d8aa9-8c13-40d6-bd4b-308a6a9ffdc9.png" },
@@ -12,6 +15,71 @@ const works = [
 const filters = ["Все работы", "Оклейка", "Защитная плёнка", "Антихром"];
 
 export function Portfolio() {
+  const stageRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage || !window.matchMedia("(min-width: 1280px) and (prefers-reduced-motion: no-preference)").matches) return;
+    if (completedScenes.has("portfolio")) {
+      stage.dataset.revealed = "true";
+      stage.dataset.motion = "complete";
+      return;
+    }
+
+    let visible = false;
+    let cancelled = false;
+    let ready = false;
+    let allLoaded = false;
+
+    const reveal = () => {
+      if (cancelled || !visible || !ready || completedScenes.has("portfolio")) return;
+      completedScenes.add("portfolio");
+      stage.dataset.revealed = "true";
+      if (allLoaded) {
+        stage.dataset.motion = "animate";
+      } else {
+        // A missing remote image must not trigger a zoom on empty cards.
+        stage.dataset.motion = "complete";
+      }
+      observer.disconnect();
+    };
+
+    // Preload each unique image; wait for decoding before starting the camera move.
+    Promise.all(works.map(async ({ image }) => {
+      const preload = new window.Image();
+      preload.src = image;
+      await new Promise<void>((resolve, reject) => {
+        if (preload.complete) {
+          preload.naturalWidth ? resolve() : reject(new Error("Image unavailable"));
+          return;
+        }
+        preload.onload = () => resolve();
+        preload.onerror = () => reject(new Error("Image unavailable"));
+      });
+      if (preload.decode) await preload.decode();
+    })).then(() => {
+      if (cancelled) return;
+      allLoaded = true;
+      ready = true;
+      reveal();
+    }).catch(() => {
+      if (cancelled) return;
+      ready = true;
+      reveal();
+    });
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        visible = true;
+        reveal();
+      }
+    }, { rootMargin: "0px 0px -35% 0px" });
+    const section = stage.querySelector<HTMLElement>("#portfolio");
+    if (section) observer.observe(section);
+    return () => {
+      cancelled = true;
+      observer.disconnect();
+    };
+  }, []);
   const [filter, setFilter] = useState("Все работы");
   const [offset, setOffset] = useState(0);
   const touchStartX = useRef<number | null>(null);
@@ -50,7 +118,7 @@ export function Portfolio() {
   };
 
   return (
-    <div className={styles.stage}>
+    <div ref={stageRef} data-revealed="false" className={styles.stage}>
     <section id="portfolio" className={styles.section} aria-labelledby="portfolio-title">
       <span className={styles.sceneTone} aria-hidden="true" />
       <div className={styles.header}>

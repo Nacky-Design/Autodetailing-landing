@@ -118,3 +118,70 @@
   .copy{top:50%;translate:0 -50%}
   .cards{inset:50% 0 auto;height:min(calc(100% - 64px),736px);translate:0 -50%}
 }
+
+
+/* About / cinematic camera shutters.
+   Frames stay fixed; the visual reveal travels across each photograph. */
+@media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
+  .section .card { opacity:1; }
+  .section .cardImage { transform:none; }
+  .section .cardCaption { opacity:1; }
+  .section .card::after {
+    content:"";
+    position:absolute;
+    z-index:3;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(105deg,transparent 30%,rgba(255,215,149,.12) 49%,transparent 68%);
+    transform:translateX(-115%);
+    opacity:0;
+  }
+  .section[data-revealed="false"] .card { clip-path:inset(0 100% 0 0); }
+  .section[data-revealed="false"] .cardImage { transform:scale(1.13) translateX(-2%); }
+  .section[data-revealed="false"] .cardCaption { opacity:0; transform:translateY(16px); }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .card {
+    animation:about-shutter 1050ms cubic-bezier(.76,0,.18,1) both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardImage {
+    animation:about-camera-settle 1650ms cubic-bezier(.22,1,.36,1) both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardCaption {
+    animation:about-label-arrive 650ms cubic-bezier(.22,1,.36,1) both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .card::after {
+    animation:about-light-sweep 1200ms ease-in-out both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardWide { animation-delay:100ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardMedium { animation-delay:520ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardSmall { animation-delay:790ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardWide .cardImage { animation-delay:100ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardMedium .cardImage { animation-delay:520ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardSmall .cardImage { animation-delay:790ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardWide .cardCaption { animation-delay:830ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardMedium .cardCaption { animation-delay:1240ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardSmall .cardCaption { animation-delay:1510ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardWide::after { animation-delay:100ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardMedium::after { animation-delay:520ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardSmall::after { animation-delay:790ms; }
+  .section[data-motion="complete"] .card { clip-path:inset(0); animation:none; }
+  .section[data-motion="complete"] .cardImage { transform:none; animation:none; }
+  .section[data-motion="complete"] .cardCaption { opacity:1; transform:none; animation:none; }
+  .section[data-motion="complete"] .card::after { opacity:0; animation:none; }
+}
+@keyframes about-shutter {
+  from { clip-path:inset(0 100% 0 0); }
+  to { clip-path:inset(0 0 0 0); }
+}
+@keyframes about-camera-settle {
+  from { transform:scale(1.13) translateX(-2%); }
+  to { transform:scale(1) translateX(0); }
+}
+@keyframes about-label-arrive {
+  from { opacity:0; transform:translateY(16px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes about-light-sweep {
+  0% { opacity:0; transform:translateX(-115%); }
+  35% { opacity:1; }
+  100% { opacity:0; transform:translateX(115%); }
+}

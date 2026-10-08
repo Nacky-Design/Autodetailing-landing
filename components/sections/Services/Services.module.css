@@ -507,3 +507,53 @@
   .inner{width:calc(100% - 64px);max-width:none}
   .grid{width:100%;margin-top:clamp(30px,3.8dvh,36px);gap:12px}
 }
+
+
+/* Services cascade v2: distinct, non-overlapping scroll phases. */
+@media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
+  .services { view-timeline-name:--services-choreography; view-timeline-axis:block; }
+  .heading { animation:services-heading-in linear both; animation-timeline:--services-choreography; animation-range:entry 0% entry 15%; }
+  .grid { animation:none; }
+  .grid .card { animation:services-card-choreography linear both; animation-timeline:--services-choreography; animation-range:entry 12% entry 23%; }
+  .grid .card:nth-child(2) { animation-range:entry 24% entry 35%; }
+  .grid .card:nth-child(3) { animation-range:entry 36% entry 47%; }
+}
+@keyframes services-heading-in {
+  from { opacity:.12; transform:translateY(18px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes services-card-choreography {
+  from { opacity:0; transform:translateY(42px) scale(.965); }
+  to { opacity:1; transform:translateY(0) scale(1); }
+}
+
+/* Directed Services scene: illuminate each fixed card, not the card geometry.
+   IntersectionObserver drives a reliable, reversible entrance on desktop. */
+@media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
+  .services .heading,
+  .services .grid,
+  .services .grid .card { animation:none; transform:none; opacity:1; }
+  .services[data-revealed="false"] .cardMedia { opacity:.14; filter:brightness(.38); }
+  .services[data-revealed="false"] .cardBody { opacity:.3; }
+  .services[data-revealed="true"] .cardMedia {
+    animation:services-light-on 1100ms cubic-bezier(.2,.7,.2,1) both;
+  }
+  .services[data-revealed="true"] .cardBody {
+    animation:services-copy-on 900ms cubic-bezier(.2,.7,.2,1) both;
+  }
+  .services[data-revealed="true"] .grid>li:nth-child(2) .cardMedia,
+  .services[data-revealed="true"] .grid>li:nth-child(2) .cardBody { animation-delay:320ms; }
+  .services[data-revealed="true"] .grid>li:nth-child(3) .cardMedia,
+  .services[data-revealed="true"] .grid>li:nth-child(3) .cardBody { animation-delay:640ms; }
+  .services[data-revealed="true"] .cardBody { animation-delay:160ms; }
+  .services[data-revealed="true"] .grid>li:nth-child(2) .cardBody { animation-delay:480ms; }
+  .services[data-revealed="true"] .grid>li:nth-child(3) .cardBody { animation-delay:800ms; }
+}
+@keyframes services-light-on {
+  from { opacity:.14; filter:brightness(.38); }
+  to { opacity:1; filter:brightness(1); }
+}
+@keyframes services-copy-on {
+  from { opacity:.3; }
+  to { opacity:1; }
+}

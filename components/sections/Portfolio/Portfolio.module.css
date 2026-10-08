@@ -54,3 +54,23 @@
 @media(min-width:1280px) and (min-height:720px) and (max-height:960px){
   .stage>.section .pagination{bottom:clamp(52px,6.4dvh,64px)}
 }
+
+
+/* Portfolio: one quiet camera pullback, no masks or section entrances.
+   The carousel track keeps exclusive ownership of its translation. */
+@media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
+  .stage .header,.stage .carousel,.stage .pagination {
+    opacity:1;
+    clip-path:none;
+    animation:none;
+  }
+  .stage[data-revealed="false"] .photo { transform:scale(1.06); }
+  .stage[data-revealed="true"]:not([data-motion="complete"]) .photo {
+    animation:portfolio-camera-pullback 900ms cubic-bezier(.35,.05,.25,1) both;
+  }
+  .stage[data-motion="complete"] .photo { animation:none; transform:none; }
+}
+@keyframes portfolio-camera-pullback {
+  from { transform:scale(1.06); }
+  to { transform:scale(1); }
+}

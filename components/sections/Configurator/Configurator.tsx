@@ -1,13 +1,40 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { CARKVIZ_URL } from "@/lib/constants";
 import styles from "./Configurator.module.css";
 
+const revealedSections = new Set<string>();
+
 export function Configurator() {
+  const sectionRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || !window.matchMedia("(min-width: 1280px) and (prefers-reduced-motion: no-preference)").matches) return;
+    const sceneKey = "configurator";
+    if (revealedSections.has(sceneKey)) {
+      section.dataset.revealed = "true";
+      section.dataset.motion = "complete";
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        revealedSections.add(sceneKey);
+        section.dataset.revealed = "true";
+        observer.disconnect();
+      }
+    }, { rootMargin: "0px 0px -35% 0px" });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
   return (
     <section
       id="configurator"
+      ref={sectionRef}
+      data-revealed="false"
       className={styles.section}
       aria-labelledby="configurator-title"
     >

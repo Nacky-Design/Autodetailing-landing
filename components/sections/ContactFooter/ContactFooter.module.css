@@ -123,3 +123,23 @@
   .legal{left:48px;right:48px;top:76px;padding-top:16px;font-size:13px}
   .legal div{gap:26px}
 }
+
+/* Contacts finale: keep all content visible; only one brief CTA light sweep. */
+@media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
+  .section .cta { overflow:hidden; isolation:isolate; }
+  .section .cta::after {
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(105deg,transparent 32%,rgba(255,255,255,.04) 43%,rgba(255,255,255,.36) 50%,rgba(255,255,255,.04) 57%,transparent 68%);
+    transform:translateX(-130%);opacity:0;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cta::after {
+    animation:contacts-cta-light-pass 850ms ease-in-out 420ms both;
+  }
+  .section[data-motion="complete"] .cta::after {opacity:0;animation:none;}
+}
+@keyframes contacts-cta-light-pass {
+  0% {transform:translateX(-130%);opacity:0}
+  18% {opacity:1}
+  82% {opacity:1}
+  100% {transform:translateX(130%);opacity:0}
+}

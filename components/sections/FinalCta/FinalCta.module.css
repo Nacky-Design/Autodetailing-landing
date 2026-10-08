@@ -3,3 +3,30 @@
 @media(min-width:1280px){.stage{height:100vh;margin-top:calc(-100vh + 96px)}.stage>.section{position:sticky;top:0;height:100vh;min-height:0}}
 @media(max-width:1279px){.section{min-height:auto;padding:72px var(--container-pad) 48px}.copy,.benefits{position:relative;inset:auto;width:auto}.copy{width:auto}.title{font-size:clamp(42px,7vw,64px)}.lead{width:auto;max-width:650px}.car{opacity:.45;width:70%;right:-20%}.benefits{margin-top:80px;height:auto;grid-template-columns:repeat(2,1fr)}.benefit{min-height:120px}.benefit:nth-child(2)::after{display:none}}
 @media(max-width:767px){.section{padding-top:56px}.kicker{font-size:13px}.kicker i{width:min(180px,38vw)}.title{margin-top:32px;font-size:clamp(36px,10vw,44px)}.lead{margin-top:24px;font-size:18px}.actions{margin-top:34px;display:grid}.primary,.secondary{height:58px}.benefits{margin-top:64px;grid-template-columns:1fr}.benefit{min-height:96px;padding:0 24px}.benefit::after{display:none!important}.benefit:not(:last-child){border-bottom:1px solid rgba(106,102,94,.4)}}
+
+/* Final CTA: calm finale. The background light breathes in once;
+   heading follows the shared 10px / 560ms editorial motion.
+   Actions and benefit tiles stay fully visible and interactive. */
+@media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
+  .section[data-revealed="false"] .kicker,
+  .section[data-revealed="false"] .title { translate:0 10px; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .kicker,
+  .section[data-revealed="true"]:not([data-motion="complete"]) .title {
+    animation:final-heading-rise 560ms cubic-bezier(.25,.1,.25,1) both;
+  }
+  .section[data-revealed="false"] .lead { filter:brightness(.75); }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .lead {
+    animation:final-lead-warm 800ms ease-out 240ms both;
+  }
+  .section[data-revealed="false"]::before { filter:brightness(.78); }
+  .section[data-revealed="true"]:not([data-motion="complete"])::before {
+    animation:final-background-awake 1400ms ease-out both;
+  }
+  .section[data-motion="complete"] .kicker,
+  .section[data-motion="complete"] .title { translate:none;animation:none; }
+  .section[data-motion="complete"] .lead,
+  .section[data-motion="complete"]::before { filter:none;animation:none; }
+}
+@keyframes final-heading-rise { from {translate:0 10px} to {translate:0 0} }
+@keyframes final-lead-warm { from {filter:brightness(.75)} to {filter:brightness(1)} }
+@keyframes final-background-awake { from {filter:brightness(.78)} to {filter:brightness(1)} }

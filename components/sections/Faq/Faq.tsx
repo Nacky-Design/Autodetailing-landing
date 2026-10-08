@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./Faq.module.css";
+
+const completedScenes = new Set<string>();
 
 const items = [
   {
@@ -28,12 +30,31 @@ const items = [
 
 export function Faq() {
   const [open, setOpen] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || !window.matchMedia("(min-width: 1280px) and (prefers-reduced-motion: no-preference)").matches) return;
+    if (completedScenes.has("faq")) {
+      section.dataset.revealed = "true";
+      section.dataset.motion = "complete";
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        completedScenes.add("faq");
+        section.dataset.revealed = "true";
+        observer.disconnect();
+      }
+    }, { rootMargin: "0px 0px -35% 0px" });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className={styles.stage}>
-      <section id="faq" className={styles.section} aria-labelledby="faq-title">
+      <section id="faq" ref={sectionRef} data-revealed="false" className={styles.section} aria-labelledby="faq-title">
         <span className={styles.veil} aria-hidden="true" />
-        <div className={styles.heading}>
+        <div className={styles.heading} data-scene-heading>
           <div className={styles.kicker}><span>FAQ</span><i /></div>
           <h2 id="faq-title" className={styles.title}><span>Ответы</span><span>на частые вопросы</span></h2>
         </div>

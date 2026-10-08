@@ -1,4 +1,8 @@
+"use client";
+import { useEffect, useRef } from "react";
 import styles from "./ContactFooter.module.css";
+
+const completedScenes = new Set<string>();
 const bg="https://www.figma.com/api/mcp/asset/133ec847-e43b-4cfd-af46-21c7aac80fc4.png";
 const send="https://www.figma.com/api/mcp/asset/9256bad0-aac5-46b0-97c4-7c137a8726f8.svg";
 const logo="https://www.figma.com/api/mcp/asset/2a5888de-65dd-4394-9f8e-276d0404687d.svg";
@@ -6,9 +10,21 @@ const parking="https://www.figma.com/api/mcp/asset/cf149be5-6b2e-4df0-9c9a-a0082
 const clock="https://www.figma.com/api/mcp/asset/0341c8af-a939-4c2d-9e74-b61ba3d19314.svg";
 const pin="https://www.figma.com/api/mcp/asset/11688031-a073-4050-b6b1-51ea4b2b3876.svg";
 
-export function ContactFooter(){return <section id="contacts" className={styles.section}>
+export function ContactFooter(){
+ const sectionRef = useRef<HTMLElement>(null);
+ useEffect(() => {
+  const section = sectionRef.current;
+  if (!section || !window.matchMedia("(min-width: 1280px) and (prefers-reduced-motion: no-preference)").matches) return;
+  if (completedScenes.has("contacts")) { section.dataset.revealed = "true"; section.dataset.motion = "complete"; return; }
+  const observer = new IntersectionObserver(([entry]) => {
+   if (entry.isIntersecting) { completedScenes.add("contacts"); section.dataset.revealed = "true"; observer.disconnect(); }
+  }, { rootMargin:"0px 0px -35% 0px" });
+  observer.observe(section);
+  return () => observer.disconnect();
+ }, []);
+ return <section ref={sectionRef} data-revealed="false" id="contacts" className={styles.section}>
 <img className={styles.bg} src={bg} alt=""/><div className={styles.leftShade}/><div className={styles.tone}/>
-<div className={styles.heading}><div className={styles.kicker}>КОНТАКТЫ<i/></div><h2>Будем рады<br/><span>вашему обращению</span></h2><p>Проконсультируем, подберём решение<br/>и запишем на удобное время.</p></div>
+<div className={styles.heading} data-scene-heading><div className={styles.kicker}>КОНТАКТЫ<i/></div><h2>Будем рады<br/><span>вашему обращению</span></h2><p>Проконсультируем, подберём решение<br/>и запишем на удобное время.</p></div>
 <div className={styles.phone}><strong>+7 987 654-32-10</strong><span>Ежедневно с 10:00 до 21:00</span></div>
 <a className={styles.cta} href="#configurator">Примерить на своём авто</a>
 <div className={styles.info}>
