@@ -124,26 +124,22 @@
   .legal div{gap:26px}
 }
 
-/* Contacts finale: all contact details, background and footer remain visible.
-   Shared heading rise; sequential warm highlights, not loading fades. */
+/* Contacts finale: keep all content visible; only one brief CTA light sweep. */
 @media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
-  .section[data-revealed="false"] .phone strong,
-  .section[data-revealed="false"] .infoItem img { filter:brightness(.7); }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .phone strong {
-    animation:contacts-accent-awake 750ms ease-out 260ms both;
+  .section .cta { overflow:hidden; isolation:isolate; }
+  .section .cta::after {
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(105deg,transparent 32%,rgba(255,255,255,.04) 43%,rgba(255,255,255,.36) 50%,rgba(255,255,255,.04) 57%,transparent 68%);
+    transform:translateX(-130%);opacity:0;
   }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .infoItem img {
-    animation:contacts-accent-awake 700ms ease-out both;
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cta::after {
+    animation:contacts-cta-light-pass 850ms ease-in-out 420ms both;
   }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .infoItem:nth-child(1) img { animation-delay:480ms; }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .infoItem:nth-child(2) img { animation-delay:620ms; }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .infoItem:nth-child(3) img { animation-delay:760ms; }
-
-
-  .section[data-motion="complete"] .phone strong,
-  .section[data-motion="complete"] .infoItem img { filter:none;animation:none; }
-
+  .section[data-motion="complete"] .cta::after {opacity:0;animation:none;}
 }
-
-@keyframes contacts-accent-awake { from {filter:brightness(.7)} to {filter:brightness(1)} }
-
+@keyframes contacts-cta-light-pass {
+  0% {transform:translateX(-130%);opacity:0}
+  18% {opacity:1}
+  82% {opacity:1}
+  100% {transform:translateX(130%);opacity:0}
+}
