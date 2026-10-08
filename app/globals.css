@@ -75,3 +75,22 @@ ol {
   white-space: nowrap;
   border: 0;
 }
+
+/* Shared editorial heading motion for the four overlapping desktop scenes.
+   The wrapper keeps its positioning and transforms; only its children translate. */
+@media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
+  section[data-revealed="false"] [data-scene-heading] > * {
+    translate:0 10px;
+  }
+  section[data-revealed="true"]:not([data-motion="complete"]) [data-scene-heading] > * {
+    animation:scene-heading-rise 560ms cubic-bezier(.25,.1,.25,1) both;
+  }
+  section[data-motion="complete"] [data-scene-heading] > * {
+    translate:none;
+    animation:none;
+  }
+}
+@keyframes scene-heading-rise {
+  from { translate:0 10px; }
+  to { translate:0 0; }
+}
