@@ -54,29 +54,18 @@
   .inner{height:calc(100% - 96px);margin-top:96px}
 }
 
-/* Pricing: restrained editorial entrance, with sticky layout and tabs untouched. */
+/* Pricing: the existing sticky handoff is the scene transition.
+   Keep the panel, tabs and all prices visible and immediately interactive. */
 @media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
-  .section[data-revealed="false"] .intro { opacity:0; transform:translateY(14px); }
-  .section[data-revealed="false"] .panel { opacity:0; }
-  .section[data-revealed="false"] .panel .row { opacity:0; }
+  .section .panel,
+  .section .panel .row { opacity:1; transform:none; animation:none; }
+  .section[data-revealed="false"] .intro { opacity:0; transform:translateY(10px); }
   .section[data-revealed="true"]:not([data-motion="complete"]) .intro {
-    animation:pricing-copy-in 700ms cubic-bezier(.22,1,.36,1) both;
+    animation:pricing-heading-settle 560ms cubic-bezier(.25,.1,.25,1) both;
   }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .panel {
-    animation:pricing-panel-in 850ms ease-out 180ms both;
-  }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .panel .row {
-    animation:pricing-line-in 480ms ease-out both;
-  }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .panel .row:nth-child(2) { animation-delay:420ms; }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .panel .row:nth-child(3) { animation-delay:470ms; }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .panel .row:nth-child(4) { animation-delay:520ms; }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .panel .row:nth-child(5) { animation-delay:570ms; }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .panel .row:nth-child(n+6) { animation-delay:620ms; }
-  .section[data-motion="complete"] .intro,
-  .section[data-motion="complete"] .panel,
-  .section[data-motion="complete"] .panel .row { opacity:1;transform:none;animation:none; }
+  .section[data-motion="complete"] .intro { opacity:1;transform:none;animation:none; }
 }
-@keyframes pricing-copy-in { from {opacity:0;transform:translateY(14px)} to {opacity:1;transform:translateY(0)} }
-@keyframes pricing-panel-in { from {opacity:0} to {opacity:1} }
-@keyframes pricing-line-in { from {opacity:0} to {opacity:1} }
+@keyframes pricing-heading-settle {
+  from {opacity:0;transform:translateY(10px)}
+  to {opacity:1;transform:translateY(0)}
+}
