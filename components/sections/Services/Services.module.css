@@ -526,3 +526,34 @@
   from { opacity:0; transform:translateY(42px) scale(.965); }
   to { opacity:1; transform:translateY(0) scale(1); }
 }
+
+/* Directed Services scene: illuminate each fixed card, not the card geometry.
+   IntersectionObserver drives a reliable, reversible entrance on desktop. */
+@media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
+  .services .heading,
+  .services .grid,
+  .services .grid .card { animation:none; transform:none; opacity:1; }
+  .services[data-revealed="false"] .cardMedia { opacity:.14; filter:brightness(.38); }
+  .services[data-revealed="false"] .cardBody { opacity:.3; }
+  .services[data-revealed="true"] .cardMedia {
+    animation:services-light-on 1100ms cubic-bezier(.2,.7,.2,1) both;
+  }
+  .services[data-revealed="true"] .cardBody {
+    animation:services-copy-on 900ms cubic-bezier(.2,.7,.2,1) both;
+  }
+  .services[data-revealed="true"] .grid>li:nth-child(2) .cardMedia,
+  .services[data-revealed="true"] .grid>li:nth-child(2) .cardBody { animation-delay:320ms; }
+  .services[data-revealed="true"] .grid>li:nth-child(3) .cardMedia,
+  .services[data-revealed="true"] .grid>li:nth-child(3) .cardBody { animation-delay:640ms; }
+  .services[data-revealed="true"] .cardBody { animation-delay:160ms; }
+  .services[data-revealed="true"] .grid>li:nth-child(2) .cardBody { animation-delay:480ms; }
+  .services[data-revealed="true"] .grid>li:nth-child(3) .cardBody { animation-delay:800ms; }
+}
+@keyframes services-light-on {
+  from { opacity:.14; filter:brightness(.38); }
+  to { opacity:1; filter:brightness(1); }
+}
+@keyframes services-copy-on {
+  from { opacity:.3; }
+  to { opacity:1; }
+}
