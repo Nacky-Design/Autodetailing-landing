@@ -2,8 +2,9 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-const completedScenes = new Set<string>();
 import styles from "./Portfolio.module.css";
+
+const completedScenes = new Set<string>();
 
 const works = [
   { title: "Porsche Cayenne", type: "Виниловая оклейка", filter: "Оклейка", image: "https://www.figma.com/api/mcp/asset/aa1d8aa9-8c13-40d6-bd4b-308a6a9ffdc9.png" },
@@ -23,15 +24,60 @@ export function Portfolio() {
       stage.dataset.motion = "complete";
       return;
     }
+
+    let visible = false;
+    let cancelled = false;
+    let ready = false;
+    let allLoaded = false;
+
+    const reveal = () => {
+      if (cancelled || !visible || !ready || completedScenes.has("portfolio")) return;
+      completedScenes.add("portfolio");
+      stage.dataset.revealed = "true";
+      if (allLoaded) {
+        stage.dataset.motion = "animate";
+      } else {
+        // A missing remote image must not trigger a zoom on empty cards.
+        stage.dataset.motion = "complete";
+      }
+      observer.disconnect();
+    };
+
+    // Preload each unique image; wait for decoding before starting the camera move.
+    Promise.all(works.map(async ({ image }) => {
+      const preload = new window.Image();
+      preload.src = image;
+      await new Promise<void>((resolve, reject) => {
+        if (preload.complete) {
+          preload.naturalWidth ? resolve() : reject(new Error("Image unavailable"));
+          return;
+        }
+        preload.onload = () => resolve();
+        preload.onerror = () => reject(new Error("Image unavailable"));
+      });
+      if (preload.decode) await preload.decode();
+    })).then(() => {
+      if (cancelled) return;
+      allLoaded = true;
+      ready = true;
+      reveal();
+    }).catch(() => {
+      if (cancelled) return;
+      ready = true;
+      reveal();
+    });
+
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        completedScenes.add("portfolio");
-        stage.dataset.revealed = "true";
-        observer.disconnect();
+        visible = true;
+        reveal();
       }
     }, { rootMargin: "0px 0px -35% 0px" });
     observer.observe(stage);
-    return () => observer.disconnect();
+    return () => {
+      cancelled = true;
+      observer.disconnect();
+    };
   }, []);
   const [filter, setFilter] = useState("Все работы");
   const [offset, setOffset] = useState(0);
