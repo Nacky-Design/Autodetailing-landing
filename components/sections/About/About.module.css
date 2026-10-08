@@ -119,41 +119,69 @@
   .cards{inset:50% 0 auto;height:min(calc(100% - 64px),736px);translate:0 -50%}
 }
 
-/* About: focus moves from the hero photograph to the two supporting frames.
-   All approved card positions, sizes and text geometry remain fixed. */
+
+/* About / cinematic camera shutters.
+   Frames stay fixed; the visual reveal travels across each photograph. */
 @media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
-  .section[data-revealed="false"] .card { opacity:0; }
-  .section[data-revealed="false"] .cardImage { transform:scale(1.045); }
-  .section[data-revealed="false"] .cardCaption { opacity:0; }
+  .section .card { opacity:1; }
+  .section .cardImage { transform:none; }
+  .section .cardCaption { opacity:1; }
+  .section .card::after {
+    content:"";
+    position:absolute;
+    z-index:3;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(105deg,transparent 30%,rgba(255,215,149,.12) 49%,transparent 68%);
+    transform:translateX(-115%);
+    opacity:0;
+  }
+  .section[data-revealed="false"] .card { clip-path:inset(0 100% 0 0); }
+  .section[data-revealed="false"] .cardImage { transform:scale(1.13) translateX(-2%); }
+  .section[data-revealed="false"] .cardCaption { opacity:0; transform:translateY(16px); }
   .section[data-revealed="true"]:not([data-motion="complete"]) .card {
-    animation:about-frame-awake 1000ms cubic-bezier(.22,1,.36,1) both;
+    animation:about-shutter 1050ms cubic-bezier(.76,0,.18,1) both;
   }
   .section[data-revealed="true"]:not([data-motion="complete"]) .cardImage {
-    animation:about-photo-settle 1500ms cubic-bezier(.22,1,.36,1) both;
+    animation:about-camera-settle 1650ms cubic-bezier(.22,1,.36,1) both;
   }
   .section[data-revealed="true"]:not([data-motion="complete"]) .cardCaption {
-    animation:about-caption-awake 650ms ease-out both;
+    animation:about-label-arrive 650ms cubic-bezier(.22,1,.36,1) both;
   }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .cardMedium,
-  .section[data-revealed="true"]:not([data-motion="complete"]) .cardMedium .cardImage { animation-delay:420ms; }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .cardSmall,
-  .section[data-revealed="true"]:not([data-motion="complete"]) .cardSmall .cardImage { animation-delay:760ms; }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .cardWide .cardCaption { animation-delay:500ms; }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .cardMedium .cardCaption { animation-delay:920ms; }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .cardSmall .cardCaption { animation-delay:1260ms; }
-  .section[data-motion="complete"] .card,
-  .section[data-motion="complete"] .cardCaption { opacity:1; animation:none; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .card::after {
+    animation:about-light-sweep 1200ms ease-in-out both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardWide { animation-delay:100ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardMedium { animation-delay:520ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardSmall { animation-delay:790ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardWide .cardImage { animation-delay:100ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardMedium .cardImage { animation-delay:520ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardSmall .cardImage { animation-delay:790ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardWide .cardCaption { animation-delay:830ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardMedium .cardCaption { animation-delay:1240ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardSmall .cardCaption { animation-delay:1510ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardWide::after { animation-delay:100ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardMedium::after { animation-delay:520ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .cardSmall::after { animation-delay:790ms; }
+  .section[data-motion="complete"] .card { clip-path:inset(0); animation:none; }
   .section[data-motion="complete"] .cardImage { transform:none; animation:none; }
+  .section[data-motion="complete"] .cardCaption { opacity:1; transform:none; animation:none; }
+  .section[data-motion="complete"] .card::after { opacity:0; animation:none; }
 }
-@keyframes about-frame-awake {
-  from { opacity:0; }
-  to { opacity:1; }
+@keyframes about-shutter {
+  from { clip-path:inset(0 100% 0 0); }
+  to { clip-path:inset(0 0 0 0); }
 }
-@keyframes about-photo-settle {
-  from { transform:scale(1.045); }
-  to { transform:scale(1); }
+@keyframes about-camera-settle {
+  from { transform:scale(1.13) translateX(-2%); }
+  to { transform:scale(1) translateX(0); }
 }
-@keyframes about-caption-awake {
-  from { opacity:0; }
-  to { opacity:1; }
+@keyframes about-label-arrive {
+  from { opacity:0; transform:translateY(16px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes about-light-sweep {
+  0% { opacity:0; transform:translateX(-115%); }
+  35% { opacity:1; }
+  100% { opacity:0; transform:translateX(115%); }
 }
