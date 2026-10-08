@@ -71,12 +71,7 @@
    Never animate the grid, card opacity or card transform (hover owns it). */
 @media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
   /* Keep the existing breakpoint-specific heading transform intact. */
-  .section .heading { opacity:1; }
-  .section[data-revealed="false"] .heading > * { translate:0 10px; }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .heading > * {
-    animation:reviews-heading-rise 560ms cubic-bezier(.25,.1,.25,1) both;
-  }
-  .section[data-motion="complete"] .heading > * { translate:none;animation:none; }
+
 
   .section .grid > .card,
   .section .grid > .rating { opacity:1;scale:1; }
@@ -123,7 +118,7 @@
   .section[data-motion="complete"] .score b,
   .section[data-motion="complete"] .score > strong { filter:none;animation:none; }
 }
-@keyframes reviews-heading-rise { from {translate:0 10px} to {translate:0 0} }
+
 @keyframes reviews-camera-settle { from {scale:1.055} to {scale:1} }
 @keyframes reviews-gold-awake { from {filter:brightness(.7)} to {filter:brightness(1)} }
 @keyframes reviews-light-pass {
