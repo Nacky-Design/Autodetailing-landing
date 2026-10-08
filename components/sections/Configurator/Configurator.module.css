@@ -614,3 +614,44 @@
 @media(min-width:1280px){
   .kicker{font-size:1.25rem;line-height:1;letter-spacing:.2em}
 }
+
+/* Configurator power-on: fixed geometry, sequential light and interface reveal. */
+@media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
+  .section .copy, .section .playerWrap, .section .localVeil {
+    animation:none;
+    transform:none;
+    opacity:1;
+  }
+  .section[data-revealed="false"] .copy { opacity:0; }
+  .section[data-revealed="false"] .player { filter:brightness(.28); }
+  .section[data-revealed="false"] .playBackdrop { opacity:0; }
+  .section[data-revealed="false"] .controls { opacity:0; }
+  .section[data-revealed="true"] .copy {
+    animation:config-copy-power 800ms cubic-bezier(.2,.7,.2,1) both;
+  }
+  .section[data-revealed="true"] .player {
+    animation:config-screen-power 1150ms cubic-bezier(.2,.7,.2,1) 260ms both;
+  }
+  .section[data-revealed="true"] .playBackdrop {
+    animation:config-play-power 650ms cubic-bezier(.2,.7,.2,1) 1000ms both;
+  }
+  .section[data-revealed="true"] .controls {
+    animation:config-controls-power 650ms ease-out 1050ms both;
+  }
+}
+@keyframes config-copy-power {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+@keyframes config-screen-power {
+  from { filter:brightness(.28); }
+  to { filter:brightness(1); }
+}
+@keyframes config-play-power {
+  from { opacity:0; transform:scale(.88); }
+  to { opacity:1; transform:scale(1); }
+}
+@keyframes config-controls-power {
+  from { opacity:0; }
+  to { opacity:1; }
+}
