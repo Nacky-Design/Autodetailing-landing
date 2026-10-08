@@ -56,42 +56,21 @@
 }
 
 
-/* Portfolio: one-time gallery curtain. Never animate .track transform:
-   its translation belongs exclusively to carousel navigation and touch. */
+/* Portfolio: one quiet camera pullback, no masks or section entrances.
+   The carousel track keeps exclusive ownership of its translation. */
 @media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
-  .stage[data-revealed="false"] .header { opacity:0; }
-  .stage[data-revealed="false"] .carousel { clip-path:inset(100% 0 0 0); }
-  .stage[data-revealed="false"] .pagination { opacity:0; }
-  .stage[data-revealed="true"]:not([data-motion="complete"]) .header {
-    animation:portfolio-heading-in 750ms cubic-bezier(.22,1,.36,1) both;
+  .stage .header,.stage .carousel,.stage .pagination {
+    opacity:1;
+    clip-path:none;
+    animation:none;
   }
-  .stage[data-revealed="true"]:not([data-motion="complete"]) .carousel {
-    animation:portfolio-curtain-rise 1350ms cubic-bezier(.76,0,.18,1) 300ms both;
-  }
-  .stage[data-revealed="true"]:not([data-motion="complete"]) .pagination {
-    animation:portfolio-pager-in 650ms ease-out 1200ms both;
-  }
+  .stage[data-revealed="false"] .photo { transform:scale(1.06); }
   .stage[data-revealed="true"]:not([data-motion="complete"]) .photo {
-    animation:portfolio-photo-settle 1700ms cubic-bezier(.22,1,.36,1) 300ms both;
+    animation:portfolio-camera-pullback 900ms cubic-bezier(.35,.05,.25,1) both;
   }
-  .stage[data-motion="complete"] .header,
-  .stage[data-motion="complete"] .pagination { opacity:1; animation:none; }
-  .stage[data-motion="complete"] .carousel { clip-path:none; animation:none; }
-  .stage[data-motion="complete"] .photo { animation:none; }
+  .stage[data-motion="complete"] .photo { animation:none; transform:none; }
 }
-@keyframes portfolio-heading-in {
-  from { opacity:0; transform:translateY(16px); }
-  to { opacity:1; transform:translateY(0); }
-}
-@keyframes portfolio-curtain-rise {
-  from { clip-path:inset(100% 0 0 0); }
-  to { clip-path:inset(0 0 0 0); }
-}
-@keyframes portfolio-pager-in {
-  from { opacity:0; }
-  to { opacity:1; }
-}
-@keyframes portfolio-photo-settle {
-  from { transform:scale(1.055); }
+@keyframes portfolio-camera-pullback {
+  from { transform:scale(1.06); }
   to { transform:scale(1); }
 }
