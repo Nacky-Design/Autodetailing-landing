@@ -13,8 +13,11 @@ export function Configurator() {
     const section = sectionRef.current;
     if (!section || !window.matchMedia("(min-width: 1280px) and (prefers-reduced-motion: no-preference)").matches) return;
     const observer = new IntersectionObserver(([entry]) => {
-      section.dataset.revealed = entry.isIntersecting ? "true" : "false";
-    }, { rootMargin: "0px 0px -12% 0px" });
+      if (entry.isIntersecting) {
+        section.dataset.revealed = "true";
+        observer.disconnect();
+      }
+    }, { rootMargin: "0px 0px -35% 0px" });
     observer.observe(section);
     return () => observer.disconnect();
   }, []);
@@ -22,6 +25,7 @@ export function Configurator() {
     <section
       id="configurator"
       ref={sectionRef}
+      data-revealed="false"
       className={styles.section}
       aria-labelledby="configurator-title"
     >
