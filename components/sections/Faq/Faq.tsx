@@ -54,7 +54,7 @@ export function Faq() {
     <div className={styles.stage}>
       <section id="faq" ref={sectionRef} data-revealed="false" className={styles.section} aria-labelledby="faq-title">
         <span className={styles.veil} aria-hidden="true" />
-        <div className={styles.heading}>
+        <div className={styles.heading} data-scene-heading>
           <div className={styles.kicker}><span>FAQ</span><i /></div>
           <h2 id="faq-title" className={styles.title}><span>Ответы</span><span>на частые вопросы</span></h2>
         </div>
