@@ -551,49 +551,6 @@
 
 
 
-/* Desktop scene transition.
-   The section is the scroll subject; absolutely positioned children cannot
-   reliably drive their own view timelines. */
-@media (min-width: 1280px) and (prefers-reduced-motion: no-preference) {
-  .section {
-    view-timeline-name: --configurator-scene;
-    view-timeline-axis: block;
-  }
-
-  .copy {
-    animation: studio-config-copy linear both;
-    animation-timeline: --configurator-scene;
-    animation-range: entry 8% entry 34%;
-  }
-
-  .playerWrap {
-    animation: studio-config-player linear both;
-    animation-timeline: --configurator-scene;
-    animation-range: entry 12% entry 42%;
-  }
-
-  .localVeil {
-    animation: studio-config-veil linear both;
-    animation-timeline: --configurator-scene;
-    animation-range: entry 0% entry 32%;
-  }
-}
-
-@keyframes studio-config-copy {
-  from { opacity: 0; transform: translateY(56px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes studio-config-player {
-  from { opacity: 0; transform: translateY(72px) scale(.975); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@keyframes studio-config-veil {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 /* Height-aware desktop and centered wide-screen canvas. */
 
 @media (min-width:1920px){.copy{left:max(71px,calc(50% - 889px))}.playerWrap{left:calc(50% - 139px)}}
@@ -615,76 +572,33 @@
   .kicker{font-size:1.25rem;line-height:1;letter-spacing:.2em}
 }
 
-/* Configurator power-on: fixed geometry, sequential light and interface reveal. */
-@media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
-  .section .copy, .section .playerWrap, .section .localVeil {
-    animation:none;
-    transform:none;
-    opacity:1;
-  }
-  .section[data-revealed="false"] .copy { opacity:0; }
-  .section[data-revealed="false"] .player { filter:brightness(.28); }
-  .section[data-revealed="false"] .playBackdrop { opacity:0; }
-  .section[data-revealed="false"] .controls { opacity:0; }
-  .section[data-revealed="true"] .copy {
-    animation:config-copy-power 800ms cubic-bezier(.2,.7,.2,1) both;
-  }
-  .section[data-revealed="true"] .player {
-    animation:config-screen-power 1150ms cubic-bezier(.2,.7,.2,1) 260ms both;
-  }
-  .section[data-revealed="true"] .playBackdrop {
-    animation:config-play-power 650ms cubic-bezier(.2,.7,.2,1) 1000ms both;
-  }
-  .section[data-revealed="true"] .controls {
-    animation:config-controls-power 650ms ease-out 1050ms both;
-  }
-}
-@keyframes config-copy-power {
-  from { opacity:0; }
-  to { opacity:1; }
-}
-@keyframes config-screen-power {
-  from { filter:brightness(.28); }
-  to { filter:brightness(1); }
-}
-@keyframes config-play-power {
-  from { opacity:0; transform:scale(.88); }
-  to { opacity:1; transform:scale(1); }
-}
-@keyframes config-controls-power {
-  from { opacity:0; }
-  to { opacity:1; }
-}
 
-/* Override legacy section-wide scroll animations. The power-on sequence
-   starts only at the observer threshold and never moves the approved layout. */
+/* One director-controlled entrance, no scroll-timeline animations.
+   Keep all approved section coordinates unchanged. */
 @media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
-  .section .copy, .section .playerWrap, .section .localVeil {
-    animation:none !important;
-    opacity:1;
-    transform:none;
-  }
   .section[data-revealed="false"] .copy > * { opacity:0; }
-  .section[data-revealed="false"] .player { opacity:.18; filter:brightness(.18); }
+  .section[data-revealed="false"] .preview { opacity:.22; filter:brightness(.35); }
+  .section[data-revealed="false"] .playBackdrop,
   .section[data-revealed="false"] .controls { opacity:0; }
-  .section[data-revealed="false"] .playBackdrop { opacity:0; }
+
   .section[data-revealed="true"]:not([data-motion="complete"]) .copy > * {
-    animation:config-step-in 650ms ease-out both;
+    animation:config-text-arrive 720ms cubic-bezier(.22,1,.36,1) both;
   }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .copy > :nth-child(2) { animation-delay:160ms; }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .copy > :nth-child(3) { animation-delay:340ms; }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .copy > :nth-child(4) { animation-delay:530ms; }
-  .section[data-revealed="true"]:not([data-motion="complete"]) .player {
-    animation:config-screen-power 1050ms ease-out 420ms both;
+  .section[data-revealed="true"]:not([data-motion="complete"]) .copy > :nth-child(2) { animation-delay:150ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .copy > :nth-child(3) { animation-delay:310ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .copy > :nth-child(4) { animation-delay:490ms; }
+
+  .section[data-revealed="true"]:not([data-motion="complete"]) .preview {
+    animation:config-screen-awake 1050ms cubic-bezier(.22,1,.36,1) 420ms both;
   }
   .section[data-revealed="true"]:not([data-motion="complete"]) .playBackdrop {
-    animation:config-play-power 700ms ease-out 1160ms both;
+    animation:config-play-arrive 620ms cubic-bezier(.22,1,.36,1) 1150ms both;
   }
   .section[data-revealed="true"]:not([data-motion="complete"]) .controls {
-    animation:config-controls-power 600ms ease-out 1150ms both;
+    animation:config-controls-arrive 620ms ease-out 1180ms both;
   }
   .section[data-motion="complete"] .copy > *,
-  .section[data-motion="complete"] .player,
+  .section[data-motion="complete"] .preview,
   .section[data-motion="complete"] .playBackdrop,
   .section[data-motion="complete"] .controls {
     animation:none !important;
@@ -693,7 +607,19 @@
     transform:none;
   }
 }
-@keyframes config-step-in {
+@keyframes config-text-arrive {
+  from { opacity:0; transform:translateY(12px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes config-screen-awake {
+  from { opacity:.22; filter:brightness(.35); }
+  to { opacity:1; filter:brightness(1); }
+}
+@keyframes config-play-arrive {
+  from { opacity:0; transform:scale(.9); }
+  to { opacity:1; transform:scale(1); }
+}
+@keyframes config-controls-arrive {
   from { opacity:0; }
   to { opacity:1; }
 }
