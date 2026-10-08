@@ -655,3 +655,45 @@
   from { opacity:0; }
   to { opacity:1; }
 }
+
+/* Override legacy section-wide scroll animations. The power-on sequence
+   starts only at the observer threshold and never moves the approved layout. */
+@media (min-width:1280px) and (prefers-reduced-motion:no-preference) {
+  .section .copy, .section .playerWrap, .section .localVeil {
+    animation:none !important;
+    opacity:1;
+    transform:none;
+  }
+  .section[data-revealed="false"] .copy > * { opacity:0; }
+  .section[data-revealed="false"] .player { opacity:.18; filter:brightness(.18); }
+  .section[data-revealed="false"] .controls { opacity:0; }
+  .section[data-revealed="false"] .playBackdrop { opacity:0; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .copy > * {
+    animation:config-step-in 650ms ease-out both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .copy > :nth-child(2) { animation-delay:160ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .copy > :nth-child(3) { animation-delay:340ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .copy > :nth-child(4) { animation-delay:530ms; }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .player {
+    animation:config-screen-power 1050ms ease-out 420ms both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .playBackdrop {
+    animation:config-play-power 700ms ease-out 1160ms both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .controls {
+    animation:config-controls-power 600ms ease-out 1150ms both;
+  }
+  .section[data-motion="complete"] .copy > *,
+  .section[data-motion="complete"] .player,
+  .section[data-motion="complete"] .playBackdrop,
+  .section[data-motion="complete"] .controls {
+    animation:none !important;
+    opacity:1;
+    filter:none;
+    transform:none;
+  }
+}
+@keyframes config-step-in {
+  from { opacity:0; }
+  to { opacity:1; }
+}
