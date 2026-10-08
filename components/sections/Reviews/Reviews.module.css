@@ -77,6 +77,30 @@
   .section[data-revealed="true"]:not([data-motion="complete"]) .heading > * {
     animation:reviews-heading-rise 560ms cubic-bezier(.25,.1,.25,1) both;
   }
+  /* Cards arrive in sequence without shifting their grid positions.
+     Animate scale on an inner wrapper? The cards themselves own hover transform,
+     so use scale property to avoid overwriting hover's transform. */
+  .section[data-revealed="false"] .grid > .card,
+  .section[data-revealed="false"] .grid > .rating {
+    opacity:0;
+    scale:.98;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .grid > .card,
+  .section[data-revealed="true"]:not([data-motion="complete"]) .grid > .rating {
+    animation:reviews-card-arrive 650ms cubic-bezier(.22,1,.36,1) both;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .grid > :nth-child(2) {
+    animation-delay:130ms;
+  }
+  .section[data-revealed="true"]:not([data-motion="complete"]) .grid > :nth-child(3) {
+    animation-delay:260ms;
+  }
+  .section[data-motion="complete"] .grid > .card,
+  .section[data-motion="complete"] .grid > .rating {
+    opacity:1;
+    scale:1;
+    animation:none;
+  }
   .section[data-revealed="false"] .review b,
   .section[data-revealed="false"] .score b,
   .section[data-revealed="false"] .score > strong { filter:brightness(.7); }
@@ -98,3 +122,5 @@
 @keyframes reviews-heading-opacity { from {opacity:0} to {opacity:1} }
 @keyframes reviews-heading-rise { from {translate:0 10px} to {translate:0 0} }
 @keyframes reviews-gold-awake { from {filter:brightness(.7)} to {filter:brightness(1)} }
+
+@keyframes reviews-card-arrive { from {opacity:0;scale:.98} to {opacity:1;scale:1} }
