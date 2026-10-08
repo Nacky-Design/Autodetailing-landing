@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import styles from "./ContactFooter.module.css";
+import { CONTACT } from "@/lib/data/contacts";
 
 const completedScenes = new Set<string>();
 const bg="https://www.figma.com/api/mcp/asset/133ec847-e43b-4cfd-af46-21c7aac80fc4.png";
@@ -26,7 +27,7 @@ export function ContactFooter(){
 <img className={styles.bg} src={bg} alt=""/><div className={styles.leftShade}/><div className={styles.tone}/>
 <div className={styles.heading} data-scene-heading><div className={styles.kicker}>КОНТАКТЫ<i/></div><h2>Будем рады<br/><span>вашему обращению</span></h2><p>Проконсультируем, подберём решение<br/>и запишем на удобное время.</p></div>
 <div className={styles.phone}><strong>+7 987 654-32-10</strong><span>Ежедневно с 10:00 до 21:00</span></div>
-<a className={styles.cta} href="#configurator">Примерить на своём авто</a>
+<a className={styles.cta} data-cta-system href={CONTACT.phone.href}>Позвонить в студию</a>
 <div className={styles.info}>
 <div className={styles.infoItem}><img src={pin} alt=""/><div><strong>Адрес студии</strong><span>г. Самара, ул. Лесная, 12<br/>БЦ «Кристалл», 1 этаж</span></div></div>
 <div className={styles.infoItem}><img src={clock} alt=""/><div><strong>Часы работы</strong><span>Ежедневно<br/>с 10:00 до 21:00</span></div></div>
