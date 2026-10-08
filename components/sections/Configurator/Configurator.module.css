@@ -643,3 +643,16 @@
   .playerWrap {left:max(64px,calc(50% - 896px))}
   .copy {left:calc(50% + 145px)}
 }
+
+/* Align the mirrored text column to the right grid edge, not the center.
+   The copy width remains unchanged; only its horizontal anchor moves. */
+@media (min-width:1280px) {
+  .copy {
+    left:auto;
+    right:clamp(47px,3.333vw,64px);
+    width:min(37vw,709px);
+  }
+}
+@media (min-width:1920px) {
+  .copy {right:max(64px,calc(50% - 896px));}
+}
